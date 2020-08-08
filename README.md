@@ -2,22 +2,25 @@
 
 <p align="center">
 <img alt="GitHub language count" src="https://img.shields.io/static/v1?label=version&message=7.5.2">
-<a href="https://tugasptw.herokuapp.com/"><img alt="Website" src="https://img.shields.io/website?url=https%3A%2F%2Ftugasptw.herokuapp.com%2F"></a>
-<img alt="GitHub deployments" src="https://img.shields.io/github/deployments/rdp77/perpustakaan/tugasptw">
-<img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/azriel41/perpustakaan">
+<a href="https://dryaslibrary.herokuapp.com/"><img alt="Website" src="https://img.shields.io/website?url=https%3A%2F%2Ftugasptw.herokuapp.com%2F"></a>
+<img alt="GitHub deployments" src="https://img.shields.io/github/deployments/rdp77/dryas-library">
+<img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/rdp77/dryas-library">
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## Tentang
+## User Management
 
-BERTUJUAN UNTUK MENGERJAKAN TUGAS HADIAH HARI RAYA.
+Admin: 
+```
+    username: admin@admin.com
+    password: 123123123
+```
 
-KELOMPOK 1 : PERPUSTAKAAN
-1. AXL
-2. RAVI Cogans 
-3. HANIF
-4. SI RIJAL
-5. ROZAK
+User: 
+```
+    username: user@user.com
+    password: 12345678
+```
 
 ## Spesifikasi
 
