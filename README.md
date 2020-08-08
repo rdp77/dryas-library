@@ -2,9 +2,7 @@
 
 <p align="center">
 <img alt="GitHub language count" src="https://img.shields.io/static/v1?label=version&message=7.5.2">
-<a href="https://dryaslibrary.herokuapp.com/"><img alt="Website" src="https://img.shields.io/website?url=https%3A%2F%2Ftugasptw.herokuapp.com%2F"></a>
-<img alt="GitHub deployments" src="https://img.shields.io/github/deployments/rdp77/dryas-library">
-<img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/rdp77/dryas-library">
+<a href="https://dryaslibrary.herokuapp.com/"><img alt="Website" src="https://img.shields.io/website?url=https://dryaslibrary.herokuapp.com/"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
