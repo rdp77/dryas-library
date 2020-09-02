@@ -20,21 +20,18 @@
                 <div class="premium-item">
                     <img src="{{ asset('assets/img/avatar/rdp77.png') }}" alt="">
                     <h4>Moh Ravi Dwi Putra</h4>
-                    <p>1461800115</p>
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6">
                 <div class="premium-item">
                     <img src="{{ asset('assets/img/avatar/axl.jpg') }}" alt="">
                     <h4>Deny Prasetyo</h4>
-                    <p>1461800028</p>
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6">
                 <div class="premium-item">
                     <img src="{{ asset('assets/img/avatar/default.svg') }}" alt="">
                     <h4>Abdul Rozaq N</h4>
-                    <p>1461800196</p>
                 </div>
             </div>
             <div class="col-lg-2 col-sm-6">
@@ -43,14 +40,12 @@
                 <div class="premium-item">
                     <img src="{{ asset('assets/img/avatar/ah.jpg') }}" alt="">
                     <h4>Abdurrahman Hanif</h4>
-                    <p>1461800175</p>
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6">
                 <div class="premium-item">
                     <img src="{{ asset('assets/img/avatar/default.svg') }}" alt="">
                     <h4>Ahmad Rizal M</h4>
-                    <p>1461800076</p>
                 </div>
             </div>
 
