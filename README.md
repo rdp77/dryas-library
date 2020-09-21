@@ -8,6 +8,27 @@
 <a href="https://github.com/rdp77/dryas-library/blob/master/LICENSE"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
+## Settings Environment
+
+Admin: 
+```
+    username: admin@admin.com
+    password: 123123123
+```
+
+User: 
+```
+    username: user@user.com
+    password: 12345678
+```
+
+## Import Table And Run Seeder
+
+```
+    username: admin@admin.com
+    password: 123123123
+```
+
 ## User Management
 
 Admin: 
