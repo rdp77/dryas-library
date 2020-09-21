@@ -1,4 +1,4 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
 <img alt="GitHub language count" src="https://img.shields.io/static/v1?label=version&message=7.5.2">
@@ -10,23 +10,31 @@
 
 ## Settings Environment
 
-Admin: 
+Copy the <b>.env.example</b> file and rename it to <b>.env</b> then run
 ```
-    username: admin@admin.com
-    password: 123123123
-```
-
-User: 
-```
-    username: user@user.com
-    password: 12345678
+    php artisan key:generate
 ```
 
 ## Import Table And Run Seeder
 
+For All Table And Seeder: 
 ```
-    username: admin@admin.com
-    password: 123123123
+    php artisan migrate:refresh --seed
+```
+
+Only Table: 
+```
+    php artisan migrate
+```
+
+Only Seeder: 
+```
+    php artisan db:seed
+```
+
+For Specific Seeder: 
+```
+    php artisan db:seed --class=NameSeeder
 ```
 
 ## User Management
@@ -42,12 +50,6 @@ User:
     username: user@user.com
     password: 12345678
 ```
-
-## Specification
-
-- Database Management System: PostGreSQL
-- Visual Canvas: Creately
-- Web UI Mockup Tools: Protopie
 
 ## About Laravel
 

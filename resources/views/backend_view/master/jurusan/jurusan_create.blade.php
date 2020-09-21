@@ -42,8 +42,8 @@
             <div class="form-group">
               <label>Fakultas</label>
               <select name="fakultas" class="form-control">
-                @foreach ($fakultass as $fakultas )
-                <option value="{{ $fakultas->mf_id }}">{{ $fakultas->mf_name }}</option>
+                @foreach ($fakultas as $f )
+                <option value="{{ $f->mf_id }}">{{ $f->mf_name }}</option>
                 @endforeach
               </select>
             </div>

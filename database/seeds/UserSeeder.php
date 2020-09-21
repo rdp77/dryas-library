@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
                 'email' => 'admin@admin.com',
                 'registration_kode' => Str::random(10),
                 'address' => Str::random(10),
-                'tlp' => '+621234567890',
+                'tlp' => '01234567890',
                 'password' => Hash::make(123123123),
                 'previleges' => '1',
                 'kode' => app('App\Http\Controllers\userController')->kodeadm(),
@@ -30,6 +30,8 @@ class UserSeeder extends Seeder
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s", strtotime("+4 years")),
                 'username' => 'adm',
+                'fakultas' => '0',
+                'jurusan' => '0',
             ],
             [
                 'id' => '2',
@@ -37,7 +39,7 @@ class UserSeeder extends Seeder
                 'email' => 'user@user.com',
                 'registration_kode' => Str::random(10),
                 'address' => Str::random(10),
-                'tlp' => '+621234567890',
+                'tlp' => '01234567890',
                 'password' => Hash::make(12345678),
                 'previleges' => '3',
                 'kode' => app('App\Http\Controllers\userController')->kodemhs(),
@@ -46,8 +48,8 @@ class UserSeeder extends Seeder
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s", strtotime("+4 years")),
                 'username' => 'mhs',
-                // 'fakultas' => 'default.svg',
-                // 'jurusan' => 'default.svg',
+                'fakultas' => '5',
+                'jurusan' => '9',
             ]
         ]);
     }

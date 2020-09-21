@@ -15,6 +15,9 @@ class DatabaseSeeder extends Seeder
             PrevilegesSeeder::class,
             FakultasSeeder::class,
             JurusanSeeder::class,
+            KategoriSeeder::class,
+            PenerbitSeeder::class,
+            PengarangSeeder::class,
             UserSeeder::class,
         ]);
     }

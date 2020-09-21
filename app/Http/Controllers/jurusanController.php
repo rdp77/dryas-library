@@ -33,12 +33,9 @@ class jurusanController extends Controller
     }
     public function create()
     {
-
-        $id = $this->model->jurusan()->max('mj_id') + 1;
-        $date = date('m') . date('y');
-        $kode = 'JS/' . $date . '/' . str_pad($id, 5, '0', STR_PAD_LEFT);
-        $fakultass = $this->model->fakultas()->get();
-        return view('backend_view.master.jurusan.jurusan_create', compact('kode', 'fakultass'));
+        $kode = $this->kodejr();
+        $fakultas = $this->model->fakultas()->get();
+        return view('backend_view.master.jurusan.jurusan_create', compact('kode', 'fakultas'));
     }
     public function save(Request $req)
     {
@@ -48,8 +45,6 @@ class jurusanController extends Controller
             'fakultas' => 'required',
         ]);
         $id = $this->model->jurusan()->max('mj_id') + 1;
-        $date = date('m') . date('y');
-        $kode = 'JS/' . $date . '/' . str_pad($id, 5, '0', STR_PAD_LEFT);
         if ($validasi == true) {
             $this->model->jurusan()->create([
                 'mj_id' => $id,
@@ -64,12 +59,9 @@ class jurusanController extends Controller
     }
     public function edit(Request $req)
     {
-        $id = $this->model->jurusan()->max('mj_id') + 1;
-        $date = date('m') . date('y');
-        $kode = 'JS/' . $date . '/' . str_pad($id, 5, '0', STR_PAD_LEFT);
         $data = $this->model->jurusan()->where('mj_id', $req->id)->first();
         $fakultass = $this->model->fakultas()->get();
-        return view('backend_view.master.jurusan.jurusan_edit', compact('data', 'kode', 'fakultass'));
+        return view('backend_view.master.jurusan.jurusan_edit', compact('data', 'fakultass'));
     }
     public function update(Request $req)
     {
@@ -93,5 +85,12 @@ class jurusanController extends Controller
     {
         $this->model->jurusan()->where('mj_id', $req->id)->delete();
         return redirect()->back();
+    }
+    public function kodejr()
+    {
+        $id = $this->model->jurusan()->max('mj_id') + 1;
+        $date = date('m') . date('y');
+        $kode = 'JS/' . $date . '/' . str_pad($id, 5, '0', STR_PAD_LEFT);
+        return $kode;
     }
 }
