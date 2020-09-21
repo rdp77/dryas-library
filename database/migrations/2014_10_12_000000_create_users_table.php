@@ -28,7 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('tlp')->nullable();
             $table->string('photo');
             $table->string('registration_kode')->nullable();
-            $table->string('username')->nullable();
+            $table->string('username')->unique();
             $table->integer('fakultas')->nullable();
             $table->integer('jurusan')->nullable();
         });

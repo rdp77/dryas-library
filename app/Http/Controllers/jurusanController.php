@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
 use App\models;
-use Response;
-use Auth;
 
 class jurusanController extends Controller
 {
@@ -36,10 +33,10 @@ class jurusanController extends Controller
     }
     public function create()
     {
-        
+
         $id = $this->model->jurusan()->max('mj_id') + 1;
-        $date = date('m').date('y');
-        $kode = 'JS/'.$date.'/'.str_pad($id, 5, '0', STR_PAD_LEFT);
+        $date = date('m') . date('y');
+        $kode = 'JS/' . $date . '/' . str_pad($id, 5, '0', STR_PAD_LEFT);
         $fakultass = $this->model->fakultas()->get();
         return view('backend_view.master.jurusan.jurusan_create', compact('kode', 'fakultass'));
     }
@@ -51,8 +48,8 @@ class jurusanController extends Controller
             'fakultas' => 'required',
         ]);
         $id = $this->model->jurusan()->max('mj_id') + 1;
-        $date = date('m').date('y');
-        $kode = 'JS/'.$date.'/'.str_pad($id, 5, '0', STR_PAD_LEFT);
+        $date = date('m') . date('y');
+        $kode = 'JS/' . $date . '/' . str_pad($id, 5, '0', STR_PAD_LEFT);
         if ($validasi == true) {
             $this->model->jurusan()->create([
                 'mj_id' => $id,
@@ -68,8 +65,8 @@ class jurusanController extends Controller
     public function edit(Request $req)
     {
         $id = $this->model->jurusan()->max('mj_id') + 1;
-        $date = date('m').date('y');
-        $kode = 'JS/'.$date.'/'.str_pad($id, 5, '0', STR_PAD_LEFT);
+        $date = date('m') . date('y');
+        $kode = 'JS/' . $date . '/' . str_pad($id, 5, '0', STR_PAD_LEFT);
         $data = $this->model->jurusan()->where('mj_id', $req->id)->first();
         $fakultass = $this->model->fakultas()->get();
         return view('backend_view.master.jurusan.jurusan_edit', compact('data', 'kode', 'fakultass'));
