@@ -29,11 +29,20 @@
         <div class="loader"></div>
     </div>
     @include('components.header')
-    @yield('content')
+    <section class="contact-section">
+        <div class="container-fluid">
+            <div class="contact-warp">
+                <div class="section-title mb-5">
+                    <h2>@yield('pageTitle')</h2>
+                </div>
+                @yield('content')
+                @yield('notice')
+            </div>
+        </div>
+    </section>
     @include('components.footer')
     <!-- Javascript -->
     <script src="{{ asset('js/front.js') }}"></script>
-    @yield('script')
 </body>
 
 </html>

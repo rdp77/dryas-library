@@ -11,7 +11,7 @@
 						<div class="hs-text">
 							<h2><span>@lang('home.booktitle1')</span>@lang('home.booktitlechild1')</h2>
 							<p>{{ __('home.bookdesc1') }}</p>
-							<a href="{{ route('buku_katalog') }}" class="site-btn">{{ __('home.catalog') }}</a>
+							<a href="{{ route('catalog') }}" class="site-btn">{{ __('home.catalog') }}</a>
 						</div>
 					</div>
 					<div class="col-lg-6">
@@ -34,7 +34,7 @@
 							@else
 							<a href="{{ route('login') }}" class="site-btn">{{ __('Borrow') }}</a>
 							@endif
-							<a href="{{ route('buku_katalog') }}" class="site-btn sb-c2">{{ __('home.catalog') }}</a>
+							<a href="{{ route('catalog') }}" class="site-btn sb-c2">{{ __('home.catalog') }}</a>
 						</div>
 					</div>
 					<div class="col-lg-6">

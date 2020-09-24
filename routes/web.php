@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Front End Page
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
@@ -23,7 +24,7 @@ Route::get('/team', function () {
 Route::get('/about', function () {
     return view('pages.about');
 })->name('about');
-Route::get('/catalog', 'buku_katalogController@buku_katalog')->name('buku_katalog');
+Route::get('/catalog', 'catalogController@getCatalog')->name('catalog');
 
 Auth::routes();
 
