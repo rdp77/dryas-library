@@ -18,10 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 Route::get('/team', function () {
-    return view('frontend_view.team');
+    return view('pages.team');
 })->name('team');
 Route::get('/about', function () {
-    return view('frontend_view.about');
+    return view('pages.about');
 })->name('about');
 Route::get('/catalog', 'buku_katalogController@buku_katalog')->name('buku_katalog');
 

@@ -1,5 +1,6 @@
 @extends('layouts_frontend._main')
 
+@section('title', __('home.title'))
 @section('content')
 <section class="hero-section">
 	<div class="hero-slider owl-carousel">
@@ -8,10 +9,9 @@
 				<div class="row">
 					<div class="col-lg-6">
 						<div class="hs-text">
-							<h2><span>Read</span> and Feel.</h2>
-							<p>Explore up to 100,000 more book titles that are available online and offline and
-								immediately feel the pleasure when reading it.</p>
-							<a href="{{ route('buku_katalog') }}" class="site-btn">See Catalog</a>
+							<h2><span>@lang('home.booktitle1')</span>@lang('home.booktitlechild1')</h2>
+							<p>{{ __('home.bookdesc1') }}</p>
+							<a href="{{ route('buku_katalog') }}" class="site-btn">{{ __('home.catalog') }}</a>
 						</div>
 					</div>
 					<div class="col-lg-6">
@@ -27,15 +27,14 @@
 				<div class="row">
 					<div class="col-lg-6">
 						<div class="hs-text">
-							<h2><span>KILLING</span> HEMINGWAY.</h2>
-							<p>Brian D. Meeks's book, which is the most popular book, is currently hired by some young
-								teenagers to fill their free time wherever they are.</p>
+							<h2><span>@lang('home.booktitle2')</span>@lang('home.booktitlechild2')</h2>
+							<p>@lang('home.bookdesc2')</p>
 							@if (Auth::user() != null)
-							<a href="{{ route('transaksi_peminjaman_index') }}" class="site-btn">Borrow</a>
+							<a href="{{ route('transaksi_peminjaman_index') }}" class="site-btn">{{ __('Borrow') }}</a>
 							@else
-							<a href="{{ route('login') }}" class="site-btn">Borrow</a>
+							<a href="{{ route('login') }}" class="site-btn">{{ __('Borrow') }}</a>
 							@endif
-							<a href="{{ route('buku_katalog') }}" class="site-btn sb-c2">See Catalog</a>
+							<a href="{{ route('buku_katalog') }}" class="site-btn sb-c2">{{ __('home.catalog') }}</a>
 						</div>
 					</div>
 					<div class="col-lg-6">
@@ -53,19 +52,15 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<div class="section-title">
-					<h2>Unlimited Access to 100K books</h2>
+					<h2>{{ __('Unlimited Access to 100K books') }}</h2>
 				</div>
 			</div>
 			<div class="col-lg-6">
-				<p>Start reading now and enjoy thousands to millions of unlimited titles and you can rent it whenever
-					you want, with a total collection of up to 250,000 and will continue to be updated with the times.
-					And also get a free library member card when registering, book rental can be up to 21 days, this is
-					quite satisfying for you who love to read.
-				</p>
+				<p>@lang('home.desc')</p>
 				@if (Auth::user() != null)
-				<a href="{{ route('transaksi_peminjaman_index') }}" class="site-btn">Try it now</a>
+				<a href="{{ route('transaksi_peminjaman_index') }}" class="site-btn">@lang('home.try')</a>
 				@else
-				<a href="{{ route('login') }}" class="site-btn">Try it now</a>
+				<a href="{{ route('login') }}" class="site-btn">@lang('home.try')</a>
 				@endif
 			</div>
 		</div>
