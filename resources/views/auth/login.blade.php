@@ -3,6 +3,23 @@
 @section('title', __('Dryas Library | Login'))
 @section('pageTitle', __('Login'))
 @section('content')
+<div class="alert alert-light" role="alert">
+    <h4 class="alert-heading">{{ __('Welcome!') }}</h4>
+    <div class="row">
+        <div class="col">
+            <p><b>{{ __('Admin') }}</b><br>
+                {{ __('username: admin@admin.com') }}<br>
+                {{ __('password: 123123123') }}
+            </p>
+        </div>
+        <div class="col">
+            <p><b>{{ __('User') }}</b><br>
+                {{ __('username: user@user.com') }}<br>
+                {{ __('password: 12345678') }}
+            </p>
+        </div>
+    </div>
+</div>
 <form method="POST" action="{{ route('login') }}" class="contact-from">
     @csrf
     <div class="row">
