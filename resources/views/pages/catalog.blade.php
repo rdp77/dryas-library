@@ -1,5 +1,4 @@
 @extends('layouts.default')
-
 @section('title', __('catalog.title'))
 @section('content')
 <section class="similar-songs-section">

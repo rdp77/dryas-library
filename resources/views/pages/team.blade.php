@@ -1,5 +1,4 @@
 @extends('layouts.default')
-
 @section('title', __('team.title'))
 @section('content')
 <section class="premium-section spad">

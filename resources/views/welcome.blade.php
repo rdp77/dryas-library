@@ -1,5 +1,4 @@
 @extends('layouts.default')
-
 @section('title', __('home.title'))
 @section('content')
 <section class="hero-section">

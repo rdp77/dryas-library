@@ -1,5 +1,4 @@
 @extends('layouts_backend._main')
-
 @section('content')
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
