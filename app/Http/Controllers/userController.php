@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
 use App\models;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use PDF;
 use Illuminate\Support\Facades\Hash;
 
@@ -21,7 +22,7 @@ class userController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->model = new models();
+        // $this->model = new models();
     }
 
     /**
@@ -138,7 +139,7 @@ class userController extends Controller
     }
     public function perpanjang(Request $req)
     {
-        $users = DB::table('users')->where('id', $req->id);
+        $users = DB::table('users')::table('users')->where('id', $req->id);
         $userdate = $users->first()->updated_at;
         $newdate = date("Y-m-d H:i:s", strtotime("+4 years", strtotime($userdate)));
         $users->update(['updated_at' => $newdate]);
@@ -201,7 +202,7 @@ class userController extends Controller
     }
     public function kodemhs()
     {
-        $count = $this->model->user()->where('kode', 'like', 'MHS%')->count();
+        $count = User::where('kode', 'like', 'MHS%')->count();
         $date = date("ym");
         $newcount = str_pad($count + 1, 5, '0', STR_PAD_LEFT);
         $kode = 'MHS/' . $date . "/" . $newcount;
@@ -209,7 +210,7 @@ class userController extends Controller
     }
     public function kodedsn()
     {
-        $count = $this->model->user()->where('kode', 'like', 'DSN%')->count();
+        $count = User::where('kode', 'like', 'DSN%')->count();
         $date = date("ym");
         $newcount = str_pad($count + 1, 5, '0', STR_PAD_LEFT);
         $kode = 'DSN/' . $date . "/" . $newcount;
@@ -217,7 +218,7 @@ class userController extends Controller
     }
     public function kodeadm()
     {
-        $count = $this->model->user()->where('kode', 'like', 'ADM%')->count();
+        $count = User::where('kode', 'like', 'ADM%')->count();
         $date = date("ym");
         $newcount = str_pad($count + 1, 5, '0', STR_PAD_LEFT);
         $kode = 'ADM/' . $date . "/" . $newcount;

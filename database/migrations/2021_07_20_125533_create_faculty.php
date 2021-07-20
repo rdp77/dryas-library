@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFakulty extends Migration
+class CreateFaculty extends Migration
 {
     /**
      * Run the migrations.
@@ -27,6 +27,6 @@ class CreateFakulty extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fakulty');
+        Schema::dropIfExists('faculty');
     }
 }
