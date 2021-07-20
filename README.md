@@ -41,12 +41,12 @@ For Specific Seeder:
 
 Admin: 
 ```
-    username: admin@admin.com
+    username: admin
     password: 123123123
 ```
 
 User: 
 ```
-    username: user@user.com
+    username: user
     password: 12345678
 ```

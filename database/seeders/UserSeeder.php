@@ -19,8 +19,8 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'id' => '1',
-                'name' => 'Admin',
-                'email' => 'admin@admin.com',
+                'name' => 'I\'m Admin',
+                'username' => 'admin',
                 'registration_kode' => Str::random(10),
                 'address' => Str::random(10),
                 'tlp' => '01234567890',
@@ -31,14 +31,13 @@ class UserSeeder extends Seeder
                 'photo' => 'default.svg',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s", strtotime("+4 years")),
-                'username' => 'adm',
                 'fakultas' => '0',
                 'jurusan' => '0',
             ],
             [
                 'id' => '2',
-                'name' => 'User',
-                'email' => 'user@user.com',
+                'name' => 'I\'m User',
+                'username' => 'user',
                 'registration_kode' => Str::random(10),
                 'address' => Str::random(10),
                 'tlp' => '01234567890',
@@ -49,7 +48,6 @@ class UserSeeder extends Seeder
                 'photo' => 'default.svg',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s", strtotime("+4 years")),
-                'username' => 'mhs',
                 'fakultas' => '5',
                 'jurusan' => '9',
             ]
