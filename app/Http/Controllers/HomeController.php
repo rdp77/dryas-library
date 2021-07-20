@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\models;
-use Auth;
+use App\Models\BookDetails;
+use App\Models\Log;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -18,7 +21,6 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->model = new models();
     }
 
     /**
@@ -30,11 +32,22 @@ class HomeController extends Controller
     {
         $idcard = $this->calculateid();
         $pengembalian = $this->calculatepengembalian();
-        $total_user = $this->model->user()->where('previleges', '!=', '1')->count();
-        $total_buku = $this->model->buku_dt()->count();
-        $total_buku_dipinjam = $this->model->buku_dt()->where('mbdt_status', 'TERPINJAM')->count();
-        $total_buku_terpinjam = $this->model->log()->where('log_feature', 'PEMINJAMAN')->where('log_action', 'CREATE')->count();
-        return view('home', compact('total_user', 'total_buku', 'total_buku_dipinjam', 'total_buku_terpinjam', 'idcard', 'pengembalian'));
+        $total_user = User::where('previleges', '!=', '1')
+            ->count();
+        $total_buku = BookDetails::count();
+        $total_buku_dipinjam = BookDetails::where('mbdt_status', 'TERPINJAM')
+            ->count();
+        $total_buku_terpinjam = Log::where('log_feature', 'PEMINJAMAN')
+            ->where('log_action', 'CREATE')
+            ->count();
+        return view('home', [
+            'total_user' => $total_user,
+            'total_buku' => $total_buku,
+            'total_buku_dipinjam' => $total_buku_dipinjam,
+            'total_buku_terpinjam' => $total_buku_terpinjam,
+            'idcard' => $idcard,
+            'pengembalian' => $pengembalian
+        ]);
     }
     public function calculateid()
     {
@@ -50,7 +63,7 @@ class HomeController extends Controller
     public function calculatepengembalian()
     {
         $date = date("Y-m-d");
-        $data =  $this->model->buku_dt()->join('t_peminjaman_dt', 'm_buku_dt.mbdt_isbn', '=', 't_peminjaman_dt.tpjdt_isbn')
+        $data =  DB::table('m_buku_dt')->join('t_peminjaman_dt', 'm_buku_dt.mbdt_isbn', '=', 't_peminjaman_dt.tpjdt_isbn')
             ->join('t_peminjaman', 't_peminjaman_dt.tpjdt_id', '=', 't_peminjaman.tpj_id')
             ->where([
                 ['mbdt_status', '=', 'TERPINJAM'],

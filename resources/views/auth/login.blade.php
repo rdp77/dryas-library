@@ -8,13 +8,13 @@
     <div class="row">
         <div class="col">
             <p><b>{{ __('Admin') }}</b><br>
-                {{ __('username: admin@admin.com') }}<br>
+                {{ __('username: admin') }}<br>
                 {{ __('password: 123123123') }}
             </p>
         </div>
         <div class="col">
             <p><b>{{ __('User') }}</b><br>
-                {{ __('username: user@user.com') }}<br>
+                {{ __('username: user') }}<br>
                 {{ __('password: 12345678') }}
             </p>
         </div>
@@ -24,16 +24,14 @@
     @csrf
     <div class="row">
         <div class="col-md-12">
-            {{-- Email --}}
-            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                value="{{ old('email') }}" required autocomplete="email" placeholder="Your e-mail" autofocus>
-            @error('email')
+            <input type="tel" class="form-control @error('username') is-invalid @enderror" name="username"
+                value="{{ old('username') }}" required autocomplete="username" placeholder="Your username" autofocus>
+            @error('username')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
             @enderror
 
-            {{-- Password --}}
             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
                 name="password" required autocomplete="current-password" placeholder="Your Password">
             @error('password')
