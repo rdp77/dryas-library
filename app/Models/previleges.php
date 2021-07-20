@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class previleges extends model
+class Previleges extends model
 {
+  use HasFactory;
+
   protected $table = 'm_previleges';
   protected $primaryKey = 'mp_id';
   public $remember_token = false;
@@ -20,7 +23,7 @@ class previleges extends model
 
   public function user()
   {
-    return $this->hasMany('App\User', 'previleges', 'mp_id');
+    return $this->hasMany('App\Models\User', 'previleges', 'mp_id');
   }
   public function getDateFormat()
   {

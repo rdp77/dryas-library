@@ -3,7 +3,6 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\models;
 use Illuminate\Support\Facades\Auth;
 
 class CekRole
@@ -15,12 +14,6 @@ class CekRole
      * @param  \Closure  $next
      * @return mixed
      */
-    protected $model;
-
-    public function __construct()
-    {
-        $this->model = new models();
-    }
     public function handle($request, Closure $next)
     {
         if (Auth::user()->previleges != '1') {

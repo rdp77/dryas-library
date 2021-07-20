@@ -1,6 +1,7 @@
 
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,10 +31,10 @@ Auth::routes();
 
 Route::get('/dashboard', 'HomeController@index')->name('home');
 // Profile
-Route::get('/profile', 'userController@profile')->name('profile_index');
-Route::get('/profile_edit', 'userController@profileedit')->name('profile_edit');
-Route::post('/profile_update', 'userController@profileupdate')->name('profile_update');
-Route::get('/idcard_print', 'userController@profileprint')->name('profile_print');
+Route::get('/profile', 'UserController@profile')->name('profile_index');
+Route::get('/profile_edit', 'UserController@profileedit')->name('profile_edit');
+Route::post('/profile_update', 'UserController@profileupdate')->name('profile_update');
+Route::get('/idcard_print', 'UserController@profileprint')->name('profile_print');
 // Profile Password
 Route::get('/forgot_password', 'Auth\ForgotPasswordController@index')->name('forgot_password_index');
 Route::get('/change_password', 'Auth\ForgotPasswordController@changepassword')->name('forgot_password');
@@ -46,13 +47,13 @@ Route::get('/transaksi_pengembalian', 'transaksi_pengembalianController@index')
 
 Route::group(['middleware' => 'roles'], function () {
     // User
-    Route::get('/user', 'userController@index')->name('user_index');
-    Route::get('/user_create', 'userController@create')->name('user_create');
-    Route::get('/user_save', 'userController@save')->name('user_save');
-    Route::get('/user_edit', 'userController@edit')->name('user_edit');
-    Route::get('/user_update', 'userController@update')->name('user_update');
-    Route::get('/user_hapus', 'userController@hapus')->name('user_hapus');
-    Route::get('/user_perpanjang', 'userController@perpanjang')->name('user_perpanjang');
+    Route::get('/user', 'UserController@index')->name('user_index');
+    Route::get('/user_create', 'UserController@create')->name('user_create');
+    Route::get('/user_save', 'UserController@save')->name('user_save');
+    Route::get('/user_edit', 'UserController@edit')->name('user_edit');
+    Route::get('/user_update', 'UserController@update')->name('user_update');
+    Route::get('/user_hapus', 'UserController@hapus')->name('user_hapus');
+    Route::get('/user_perpanjang', 'UserController@perpanjang')->name('user_perpanjang');
     // Previleges
     Route::get('/previleges', 'previlegesController@index')->name('previleges_index');
     Route::get('/previleges_create', 'previlegesController@create')->name('previleges_create');

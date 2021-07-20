@@ -43,15 +43,15 @@ class User extends Authenticatable
 
     public function fakultasuser()
     {
-        return $this->belongsTo('App\fakultas', 'fakultas', 'mf_id');
+        return $this->belongsTo('App\Models\Faculty', 'fakultas', 'mf_id');
     }
     public function jurusanuser()
     {
-        return $this->belongsTo('App\jurusan', 'jurusan', 'mj_id');
+        return $this->belongsTo('App\Models\Major', 'jurusan', 'mj_id');
     }
     public function hak_akses()
     {
-        return $this->belongsTo('App\previleges', 'previleges', 'mp_id');
+        return $this->belongsTo('App\Models\Previleges', 'previleges', 'mp_id');
     }
     public function peminjaman_anggota()
     {

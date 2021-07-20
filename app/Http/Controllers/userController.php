@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Faculty;
+use App\Models\Major;
+use App\Models\Previleges;
 use Illuminate\Http\Request;
-use App\models;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -17,12 +19,10 @@ class userController extends Controller
      *
      * @return void
      */
-    protected $model;
 
     public function __construct()
     {
         $this->middleware('auth');
-        // $this->model = new models();
     }
 
     /**
@@ -32,15 +32,21 @@ class userController extends Controller
      */
     public function index()
     {
-        $data = $this->model->user()->where('previleges', '!=', '1')->with('hak_akses', 'fakultasuser')->get();
-        $datas = $this->model->user()->where('previleges', '=', '1')->get();
-        return view('backend_view.master.user.user_index', compact('data', 'datas'));
+        $data = User::where('previleges', '!=', '1')
+            ->with('hak_akses', 'fakultasuser')
+            ->get();
+        $datas = User::where('previleges', '=', '1')
+            ->get();
+        return view('backend_view.master.user.user_index', [
+            'data' => $data,
+            'datas' => $datas
+        ]);
     }
     public function create()
     {
-        $previlege = $this->model->previleges()->get();
-        $fakultas = $this->model->fakultas()->get();
-        $jurusan = $this->model->jurusan()->get();
+        $previlege = Previleges::all();
+        $fakultas = Faculty::all();
+        $jurusan = Major::all();
         return view('backend_view.master.user.user_create', compact('previlege', 'fakultas', 'jurusan'));
     }
     public function save(Request $req)

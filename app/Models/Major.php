@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class jurusan extends model
+class Major extends model
 {
+  use HasFactory;
+
   protected $table = 'm_jurusan';
   protected $primaryKey = 'mj_id';
   public $remember_token = false;
@@ -21,11 +24,11 @@ class jurusan extends model
   ];
   public function user()
   {
-    return $this->hasMany('App\User', 'jurusan', 'mf_id');
+    return $this->hasMany('App\Models\User', 'jurusan', 'mf_id');
   }
   public function fakultas()
   {
-    return $this->belongsTo('App\fakultas', 'mj_fakultas', 'mf_id');
+    return $this->belongsTo('App\Models\Faculty', 'mj_fakultas', 'mf_id');
   }
   public function getDateFormat()
   {
