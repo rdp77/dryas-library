@@ -1,7 +1,7 @@
 <p align="center"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
-<img alt="GitHub language count" src="https://img.shields.io/static/v1?label=version&message=7.5.2">
+<img alt="GitHub language count" src="https://img.shields.io/static/v1?label=version&message=8.5.0">
 <a href="https://dryaslibrary.herokuapp.com/"><img alt="Website" src="https://img.shields.io/website?url=https://dryaslibrary.herokuapp.com/"></a>
 <img alt="GitHub deployments" src="https://img.shields.io/github/deployments/rdp77/dryas-library/dryaslibrary">
 <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/rdp77/dryas-library">
