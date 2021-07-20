@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,21 +14,21 @@ class peminjaman_dt extends model
   const CREATED_AT = 'created_at';
 
   protected $fillable = [
-    'tpjdt_id'  ,
-    'tpjdt_dt'  ,
-    'tpjdt_isbn' ,
+    'tpjdt_id',
+    'tpjdt_dt',
+    'tpjdt_isbn',
   ];
 
   public function getDateFormat()
   {
-      return 'Y-m-d H:i:s';
+    return 'Y-m-d H:i:s';
   }
   public function peminjaman()
   {
-      return $this->belongsTo('App\peminjaman', 'tpj_id', 'tpjdt_id');
+    return $this->belongsTo('App\peminjaman', 'tpj_id', 'tpjdt_id');
   }
   public function buku_dt()
   {
-      return $this->belongsTo('App\buku_dt', 'tpjdt_isbn', 'mbdt_isbn');
+    return $this->belongsTo('App\buku_dt', 'tpjdt_isbn', 'mbdt_isbn');
   }
 }

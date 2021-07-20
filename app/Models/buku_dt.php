@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,19 +24,18 @@ class buku_dt extends model
 
   public function getDateFormat()
   {
-      return 'Y-m-d H:i:s';
+    return 'Y-m-d H:i:s';
   }
   public function peminjaman_dt()
   {
-      return $this->hasMany('App\peminjaman_dt', 'tpjdt_isbn', 'mbdt_id');
+    return $this->hasMany('App\peminjaman_dt', 'tpjdt_isbn', 'mbdt_id');
   }
   public function pengembalian_dt()
   {
-      return $this->hasMany('App\pengembalian_dt', 'tpgdt_isbn', 'mbdt_id');
+    return $this->hasMany('App\pengembalian_dt', 'tpgdt_isbn', 'mbdt_id');
   }
   public function buku()
   {
-      return $this->belongsTo('App\buku', 'mbdt_id', 'mb_id');
+    return $this->belongsTo('App\buku', 'mbdt_id', 'mb_id');
   }
-
 }

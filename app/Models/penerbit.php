@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,8 +25,7 @@ class penerbit extends model
     return 'Y-m-d H:i:s';
   }
   public function buku()
-    {
-      return $this->hasMany('App\buku', 'mb_penerbit', 'mpn_id');
-    }
-
+  {
+    return $this->hasMany('App\buku', 'mb_penerbit', 'mpn_id');
+  }
 }

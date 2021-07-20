@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,14 +15,14 @@ class peminjaman extends model
 
   protected $fillable = [
     'tpj_id',
-    'tpj_kode' ,
+    'tpj_kode',
     'tpj_anggota',
     'tpj_staff',
-    'tpj_date_pinjam' ,
-    'tpj_date_kembali' ,
-    'tpj_created_by' ,
-    'tpj_created_at' ,
-    'tpj_date_tempo' ,
+    'tpj_date_pinjam',
+    'tpj_date_kembali',
+    'tpj_created_by',
+    'tpj_created_at',
+    'tpj_date_tempo',
   ];
 
   public function getDateFormat()
@@ -31,18 +31,18 @@ class peminjaman extends model
   }
   public function pengembalian()
   {
-      return $this->hasMany('App\pengembalian', 'tpg_peminjaman', 'tpj_id');
+    return $this->hasMany('App\pengembalian', 'tpg_peminjaman', 'tpj_id');
   }
   public function peminjaman_anggota()
   {
-      return $this->belongsTo('App\User', 'tpj_anggota', 'id');
+    return $this->belongsTo('App\User', 'tpj_anggota', 'id');
   }
   public function peminjaman_staff()
   {
-      return $this->belongsTo('App\User', 'tpj_staff', 'id');
+    return $this->belongsTo('App\User', 'tpj_staff', 'id');
   }
   public function peminjaman_dt()
   {
-      return $this->hasMany('App\peminjaman_dt', 'tpjdt_id', 'tpj_id');
+    return $this->hasMany('App\peminjaman_dt', 'tpjdt_id', 'tpj_id');
   }
 }

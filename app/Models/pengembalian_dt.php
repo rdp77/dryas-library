@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,22 +14,22 @@ class pengembalian_dt extends model
   const CREATED_AT = 'created_at';
 
   protected $fillable = [
-    'tpgdt_id'  ,
-    'tpgdt_dt'  ,
-    'tpgdt_isbn' ,
-    'tpgdt_kondisi' ,
+    'tpgdt_id',
+    'tpgdt_dt',
+    'tpgdt_isbn',
+    'tpgdt_kondisi',
   ];
 
   public function getDateFormat()
   {
-      return 'Y-m-d H:i:s';
+    return 'Y-m-d H:i:s';
   }
   public function pengembalian()
   {
-      return $this->belongsTo('App\pengembalian', 'tpg_id', 'tpgdt_id');
+    return $this->belongsTo('App\pengembalian', 'tpg_id', 'tpgdt_id');
   }
   public function buku_dt()
   {
-      return $this->belongsTo('App\buku_dt', 'tpgdt_isbn', 'mbdt_isbn');
+    return $this->belongsTo('App\buku_dt', 'tpgdt_isbn', 'mbdt_isbn');
   }
 }

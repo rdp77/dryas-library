@@ -1,27 +1,27 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\User;
-use App\fakultas;
-use App\jurusan;
-use App\previleges;
-use App\penerbit;
-use App\pengarang;
-use App\kategori;
-use App\buku;
-use App\buku_dt;
-use App\rak_buku;
-use App\peminjaman;
-use App\peminjaman_dt;
-use App\pengembalian;
-use App\pengembalian_dt;
-use App\rak_buku_dt;
-use App\log;
+use App\Models\User;
+use App\Models\fakultas;
+use App\Models\jurusan;
+use App\Models\previleges;
+use App\Models\penerbit;
+use App\Models\pengarang;
+use App\Models\kategori;
+use App\Models\buku;
+use App\Models\buku_dt;
+use App\Models\rak_buku;
+use App\Models\peminjaman;
+use App\Models\peminjaman_dt;
+use App\Models\pengembalian;
+use App\Models\pengembalian_dt;
+use App\Models\rak_buku_dt;
+use App\Models\log;
 
-class models extends model
+class Models extends model
 {
   public function user()
   {

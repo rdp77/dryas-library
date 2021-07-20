@@ -1,29 +1,29 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class previleges extends model
+class kategori extends model
 {
-  protected $table = 'm_previleges';
-  protected $primaryKey = 'mp_id';
+  protected $table = 'm_kategori';
+  protected $primaryKey = 'mk_id';
   public $remember_token = false;
   public $timestamps = false;
   const UPDATED_AT = 'updated_at';
   const CREATED_AT = 'created_at';
 
   protected $fillable = [
-    'mp_id',
-    'mp_name',
+    'mk_id',
+    'mk_name',
   ];
 
-  public function user()
-  {
-    return $this->hasMany('App\User', 'previleges', 'mp_id');
-  }
   public function getDateFormat()
   {
     return 'Y-m-d H:i:s';
+  }
+  public function buku()
+  {
+    return $this->hasMany('App\buku', 'mb_kategori', 'mk_id');
   }
 }
