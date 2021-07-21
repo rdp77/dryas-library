@@ -29,7 +29,7 @@ Route::get('/catalog', 'catalogController@getCatalog')->name('catalog');
 
 Auth::routes();
 
-Route::get('/dashboard', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 // Profile
 Route::get('/profile', 'UserController@profile')->name('profile_index');
 Route::get('/profile_edit', 'UserController@profileedit')->name('profile_edit');

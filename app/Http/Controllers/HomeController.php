@@ -40,7 +40,7 @@ class HomeController extends Controller
         $total_buku_terpinjam = Log::where('log_feature', 'PEMINJAMAN')
             ->where('log_action', 'CREATE')
             ->count();
-        return view('home', [
+        return view('dashboard', [
             'total_user' => $total_user,
             'total_buku' => $total_buku,
             'total_buku_dipinjam' => $total_buku_dipinjam,
