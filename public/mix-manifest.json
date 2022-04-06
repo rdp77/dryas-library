@@ -1,6 +1,6 @@
 {
-    "/css/front.css": "/css/front.css?id=11e6392c536b5849ad01",
-    "/js/front.js": "/js/front.js?id=81ecd9486ee2b2d8ddbb",
-    "/assets/style.css": "/assets/style.css?id=bd4518120d001bf31e67",
-    "/assets/scripts.js": "/assets/scripts.js?id=55ac8115859d1ae5ce8e"
+    "/css/front.css": "/css/front.css",
+    "/js/front.js": "/js/front.js",
+    "/css/back.css": "/css/back.css",
+    "/js/back.js": "/js/back.js"
 }

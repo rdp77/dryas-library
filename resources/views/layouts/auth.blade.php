@@ -1,51 +1,28 @@
-@include('layouts.components.header')
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
+<head>
+    <title>@yield('title')</title>
+    @include('components.meta')
+</head>
 
 <body>
-    <div id="app">
-        <section class="section">
-            <div class="container mt-5">
-                <div class="row">
-                    @if (Request::route()->getName() == 'login')
-                    <div
-                        class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
-                        @else
-                        <div
-                            class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
-                            @endif
-                            <div class="login-brand">
-                                <img src="{{ asset('assets/img/logo.png') }}" alt="logo" width="150">
-                            </div>
-                            <div class="card card-primary">
-                                <div class="card-header">
-                                    <h4>@yield('titleContent')</h4>
-                                </div>
-                                <div class="card-body">
-                                    @yield('content')
-                                </div>
-                            </div>
-                            <div class="mt-5 text-muted text-center">
-                                @if (Request::route()->getName() == 'login')
-                                {{ __('auth.noAccount') }}
-                                <a href="{{ route('register') }}">
-                                    {{ __('auth.createAccount') }}
-                                </a>
-                                @else
-                                {{ __('auth.haveAccount') }}
-                                <a href="{{ route('login') }}">
-                                    {{ __('auth.loginAccount') }}
-                                </a>
-                                @endif
-                            </div>
-                            <div class="simple-footer">
-                                @include('layouts.components.credit')
-                            </div>
-                        </div>
-                    </div>
+    @include('components.loader')
+    @include('components.header')
+    <section class="contact-section">
+        <div class="container-fluid">
+            <div class="contact-warp">
+                <div class="section-title mb-5">
+                    <h2>@yield('pageTitle')</h2>
                 </div>
-        </section>
-    </div>
-    @include('layouts.components.footer')
-    @yield('script')
+                @yield('content')
+                @yield('notice')
+            </div>
+        </div>
+    </section>
+    @include('components.footer')
+    <!-- Javascript -->
+    <script src="{{ asset('js/front.js') }}"></script>
 </body>
 
 </html>
