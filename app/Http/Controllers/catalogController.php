@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\models;
+use App\Models;
 
-class catalogController extends Controller
+class CatalogController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -15,8 +15,7 @@ class catalogController extends Controller
 
     public function __construct()
     {
-
-        $this->model = new models();
+        $this->model = new Models();
     }
 
     /**

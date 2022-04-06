@@ -4,31 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class rak_buku_dt extends model
+class Category extends Model
 {
-  protected $table = 'm_rak_buku_dt';
-  protected $primaryKey = 'mrbd_id';
+  protected $table = 'm_kategori';
+  protected $primaryKey = 'mk_id';
   public $remember_token = false;
   public $timestamps = false;
   const UPDATED_AT = 'updated_at';
   const CREATED_AT = 'created_at';
 
   protected $fillable = [
-    'mrbd_dt',
-    'mrbd_id',
-    'mrbd_kode',
+    'mk_id',
+    'mk_name',
   ];
 
   public function getDateFormat()
   {
     return 'Y-m-d H:i:s';
   }
-  public function rak_buku()
-  {
-    return $this->belongsTo('App\rak_buku', 'mrbd_id', 'mrb_id');
-  }
   public function buku()
   {
-    return $this->hasMany('App\buku', 'mrbd_dt', 'mrbd_id');
+    return $this->hasMany('App\buku', 'mb_kategori', 'mk_id');
   }
 }

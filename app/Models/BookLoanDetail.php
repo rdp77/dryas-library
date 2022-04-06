@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class peminjaman_dt extends model
+class BookLoanDetail extends Model
 {
   protected $table = 't_peminjaman_dt';
   protected $primaryKey = 'tpjdt_id';

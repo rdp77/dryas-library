@@ -4,28 +4,28 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class penerbit extends model
+class Bookshelf extends Model
 {
-  protected $table = 'm_penerbit';
-  protected $primaryKey = 'mpn_id';
+  protected $table = 'm_rak_buku';
+  protected $primaryKey = 'mrb_id';
   public $remember_token = false;
   public $timestamps = false;
   const UPDATED_AT = 'updated_at';
   const CREATED_AT = 'created_at';
 
   protected $fillable = [
-    'mpn_id',
-    'mpn_name',
-    'mpn_alamat',
-    'mpn_tlp',
+    'mrb_id',
+    'mrb_kode',
+    'mrb_name',
+    'mrb_lokasi_rak',
   ];
 
   public function getDateFormat()
   {
     return 'Y-m-d H:i:s';
   }
-  public function buku()
+  public function rak_buku_dt()
   {
-    return $this->hasMany('App\buku', 'mb_penerbit', 'mpn_id');
+    return $this->hasMany('App\rak_buku_dt', 'mrbd_id', 'mrb_id');
   }
 }

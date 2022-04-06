@@ -4,23 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\User;
-use App\Models\fakultas;
-use App\Models\jurusan;
-use App\Models\previleges;
-use App\Models\penerbit;
-use App\Models\pengarang;
-use App\Models\kategori;
-use App\Models\buku;
-use App\Models\buku_dt;
-use App\Models\rak_buku;
-use App\Models\peminjaman;
-use App\Models\peminjaman_dt;
-use App\Models\pengembalian;
-use App\Models\pengembalian_dt;
-use App\Models\rak_buku_dt;
-use App\Models\log;
-
 class Models extends model
 {
   public function user()
@@ -30,104 +13,104 @@ class Models extends model
     return $user;
   }
 
-  public function fakultas()
+  public function faculty()
   {
-    $fakultas = new fakultas();
+    $faculty = new Faculty();
 
-    return $fakultas;
+    return $faculty;
   }
 
   public function previleges()
   {
-    $previleges = new previleges();
+    $previleges = new Previleges();
 
     return $previleges;
   }
 
-  public function buku()
+  public function book()
   {
-    $buku = new buku();
+    $book = new Book();
 
-    return $buku;
+    return $book;
   }
-  public function buku_dt()
+  public function bookDetail()
   {
-    $buku_dt = new buku_dt();
+    $bookDetail = new BookDetail();
 
-    return $buku_dt;
-  }
-
-  public function buku_katalog()
-  {
-    $buku_katalog = new buku_katalog();
-
-    return $buku_katalog;
+    return $bookDetail;
   }
 
-  public function penerbit()
+  public function catalog()
   {
-    $penerbit = new penerbit();
+    $catalog = new Catalog();
 
-    return $penerbit;
+    return $catalog;
   }
-  public function pengarang()
-  {
-    $pengarang = new pengarang();
 
-    return $pengarang;
+  public function publisher()
+  {
+    $publisher = new Publisher();
+
+    return $publisher;
   }
-  public function kategori()
+  public function author()
   {
-    $kategori = new kategori();
+    $author = new Author();
 
-    return $kategori;
+    return $author;
   }
-  public function jurusan()
+  public function category()
   {
-    $jurusan = new jurusan();
+    $category = new Category();
 
-    return $jurusan;
+    return $category;
   }
-  public function rak_buku()
+  public function major()
   {
-    $rak_buku = new rak_buku();
+    $major = new Major();
 
-    return $rak_buku;
+    return $major;
   }
-  public function rak_buku_dt()
+  public function bookshelf()
   {
-    $rak_buku_dt = new rak_buku_dt();
+    $bookshelf = new Bookshelf();
 
-    return $rak_buku_dt;
+    return $bookshelf;
   }
-  public function peminjaman()
+  public function bookshelfDetail()
   {
-    $peminjaman = new peminjaman();
+    $bookshelfDetail = new BookshelfDetail();
 
-    return $peminjaman;
+    return $bookshelfDetail;
   }
-  public function peminjaman_dt()
+  public function bookLoan()
   {
-    $peminjaman_dt = new peminjaman_dt();
+    $bookLoan = new BookLoan();
 
-    return $peminjaman_dt;
+    return $bookLoan;
   }
-  public function pengembalian()
+  public function bookLoanDetail()
   {
-    $pengembalian = new pengembalian();
+    $bookLoanDetail = new BookLoanDetail();
 
-    return $pengembalian;
+    return $bookLoanDetail;
   }
-  public function pengembalian_dt()
+  public function bookReturn()
   {
-    $pengembalian_dt = new pengembalian_dt();
+    $bookReturn = new BookReturn();
 
-    return $pengembalian_dt;
+    return $bookReturn;
+  }
+  public function bookReturnDetail()
+  {
+    $bookReturnDetail = new BookReturnDetail;
+
+    return $bookReturnDetail;
   }
   public function log()
   {
-    $log = new log();
+    $Log = new Log();
 
-    return $log;
+    return $Log;
   }
 }
