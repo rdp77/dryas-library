@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models;
 
 class MajorController extends Controller
 {
@@ -17,7 +16,6 @@ class MajorController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->model = new models();
     }
 
     /**
@@ -37,7 +35,7 @@ class MajorController extends Controller
         $fakultas = $this->model->fakultas()->get();
         return view('backend_view.master.jurusan.jurusan_create', compact('kode', 'fakultas'));
     }
-    public function save(Request $req)
+    public function store(Request $req)
     {
         $validasi = $this->validate($req, [
             'kode' => 'required',
@@ -81,7 +79,7 @@ class MajorController extends Controller
             return Response()->json(['status' => 'gagal']);
         }
     }
-    public function hapus(Request $req)
+    public function destroy(Request $req)
     {
         $this->model->jurusan()->where('mj_id', $req->id)->delete();
         return redirect()->back();

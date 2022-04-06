@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models;
 
 class FacultyController extends Controller
 {
@@ -17,7 +16,6 @@ class FacultyController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->model = new models();
     }
 
     /**
@@ -31,12 +29,14 @@ class FacultyController extends Controller
 
         return view('backend_view.master.fakultas.fakultas_index', compact('data'));
     }
+
     public function create()
     {
         $kode = $this->kodefk();
         return view('backend_view.master.fakultas.fakultas_create', compact('kode'));
     }
-    public function save(Request $req)
+
+    public function store(Request $req)
     {
         $validasi = $this->validate($req, [
             'kode' => 'required',
@@ -54,11 +54,13 @@ class FacultyController extends Controller
             return Response()->json(['status' => 'gagal']);
         }
     }
+
     public function edit(Request $req)
     {
         $data = $this->model->fakultas()->where('mf_id', $req->id)->first();
         return view('backend_view.master.fakultas.fakultas_edit', compact('data'));
     }
+
     public function update(Request $req)
     {
         $validasi = $this->validate($req, [
@@ -75,11 +77,13 @@ class FacultyController extends Controller
             return Response()->json(['status' => 'gagal']);
         }
     }
-    public function hapus(Request $req)
+
+    public function destroy(Request $req)
     {
         $this->model->fakultas()->where('mf_id', $req->id)->delete();
         return redirect()->back();
     }
+
     public function kodefk()
     {
         $id = $this->model->fakultas()->max('mf_id') + 1;

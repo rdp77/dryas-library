@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models;
 
 class PrevilegesController extends Controller
 {
@@ -17,7 +16,6 @@ class PrevilegesController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->model = new models();
     }
 
     /**
@@ -34,7 +32,7 @@ class PrevilegesController extends Controller
     {
         return view('backend_view.master.previleges.previleges_create');
     }
-    public function save(Request $req)
+    public function store(Request $req)
     {
         $validasi = $this->validate($req, [
             'name' => 'required',
@@ -65,7 +63,7 @@ class PrevilegesController extends Controller
             return Response()->json(['status' => 'sukses']);
         }
     }
-    public function hapus(Request $req)
+    public function destroy(Request $req)
     {
         $this->model->previleges()->where('mp_id', $req->id)->delete();
         return redirect()->back();
