@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Book;
 
-use App\Models\Category;
+use App\Http\Controllers\Controller;
+use App\Models\BookCategory;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class BookCategoryController extends Controller
 {
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    protected $model;
 
     public function __construct()
     {
@@ -26,14 +26,16 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $data = Category::all();
+        $data = BookCategory::all();
         return view('backend_view.master.kategori.kategori_index', compact('data'));
     }
+
     public function create()
     {
         return view('backend_view.master.kategori.kategori_create');
     }
-    public function save(Request $req)
+
+    public function store(Request $req)
     {
         $validasi = $this->validate($req, [
             'name' => 'required',
@@ -47,11 +49,13 @@ class CategoryController extends Controller
             return Response()->json(['status' => 'sukses']);
         }
     }
+
     public function edit(Request $req)
     {
         $data = $this->model->kategori()->where('mk_id', $req->id)->first();
         return view('backend_view.master.kategori.kategori_edit', compact('data'));
     }
+
     public function update(Request $req)
     {
         $validasi = $this->validate($req, [
@@ -64,7 +68,8 @@ class CategoryController extends Controller
             return Response()->json(['status' => 'sukses']);
         }
     }
-    public function hapus(Request $req)
+
+    public function destroy(Request $req)
     {
         $data = $this->model->kategori()->where('mk_id', $req->id)->delete();
         return redirect()->back();

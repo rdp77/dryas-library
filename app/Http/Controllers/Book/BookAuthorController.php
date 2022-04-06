@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Book;
 
-use App\Models\Author;
+use App\Http\Controllers\Controller;
+use App\Models\BookAuthor;
 use Illuminate\Http\Request;
 
-class AuthorController extends Controller
+class BookAuthorController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -25,7 +26,7 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        $data = Author::all();
+        $data = BookAuthor::all();
         return view('backend_view.master.pengarang.pengarang_index', compact('data'));
     }
 
@@ -84,5 +85,6 @@ class AuthorController extends Controller
 
     public function show()
     {
+        //
     }
 }

@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Book;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use DB;
-use App\models;
-use Response;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class BookReturnController extends Controller
 {
@@ -15,12 +14,10 @@ class BookReturnController extends Controller
      *
      * @return void
      */
-    protected $model;
 
     public function __construct()
     {
         $this->middleware('auth');
-        $this->model = new models();
     }
 
     /**
@@ -30,9 +27,12 @@ class BookReturnController extends Controller
      */
     public function index()
     {
-        $data = $this->model->pengembalian()->with(['pengembalian_dt', 'pengembalian_dt.buku_dt', 'pengembalian_dt.buku_dt.buku'])->get();
+        $data = $this->model->pengembalian()->with([
+            'pengembalian_dt', 'pengembalian_dt.buku_dt', 'pengembalian_dt.buku_dt.buku'
+        ])->get();
         return view('backend_view.transaksi.pengembalian.pengembalian_index', compact('data'));
     }
+
     public function create()
     {
         $id = $this->model->pengembalian()->max('tpg_id') + 1;
@@ -41,19 +41,22 @@ class BookReturnController extends Controller
         $peminjaman = $this->model->peminjaman()->DoesntHave('pengembalian')->with('peminjaman_anggota')->get();
         return view('backend_view.transaksi.pengembalian.pengembalian_create', compact('kode', 'peminjaman'));
     }
+
     public function get_data_peminjaman(Request $req)
     {
         $peminjaman = $this->model->peminjaman()->where('tpj_id', $req->id_peminjaman)->with(['peminjaman_anggota', 'peminjaman_dt', 'peminjaman_dt.buku_dt', 'peminjaman_dt.buku_dt.buku'])->first();
 
         return Response()->json(['status' => 'sukses', 'hasil' => $peminjaman]);
     }
+
     public function get_data_pengembalian(Request $req)
     {
         $data = $this->model->pengembalian()->with(['pengembalian_anggota', 'pengembalian_dt', 'pengembalian_dt.buku_dt', 'pengembalian_dt.buku_dt.buku'])->where('tpg_peminjaman', $req->id_peminjaman)->first();
 
         return Response()->json(['status' => 'sukses', 'hasil' => $data]);
     }
-    public function save(Request $req)
+
+    public function store(Request $req)
     {
 
         DB::beginTransaction();
@@ -111,6 +114,7 @@ class BookReturnController extends Controller
             return Response()->json(['status' => 'error']);
         }
     }
+
     public function edit(Request $req)
     {
         $data = $this->model->pengembalian()->with(['pengembalian_dt', 'pengembalian_dt.buku_dt', 'pengembalian_dt.buku_dt.buku'])->where('tpg_id', $req->id)->first();
@@ -133,6 +137,7 @@ class BookReturnController extends Controller
             ->get();
         return view('backend_view.transaksi.pengembalian.pengembalian_edit', compact('data', 'user', 'buku', 'peminjaman'));
     }
+
     public function update(Request $req)
     {
         DB::beginTransaction();
@@ -151,7 +156,8 @@ class BookReturnController extends Controller
             return Response()->json(['status' => 'error']);
         }
     }
-    public function hapus(Request $req)
+
+    public function destroy(Request $req)
     {
         return $pengembalian = $this->model->pengembalian()->where('tpg_id', $req->id)->get();
         $pengembalian_dt = $this->model->pengembalian_dt()->where('tpgdt_id', $req->id)->get();

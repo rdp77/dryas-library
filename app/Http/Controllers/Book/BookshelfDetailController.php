@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Book;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use DB;
-use App\models;
-use Response;
 
 class BookshelfDetailController extends Controller
 {
@@ -14,12 +12,10 @@ class BookshelfDetailController extends Controller
      *
      * @return void
      */
-    protected $model;
 
     public function __construct()
     {
         $this->middleware('auth');
-        $this->model = new models();
     }
 
     /**
@@ -33,7 +29,8 @@ class BookshelfDetailController extends Controller
         $data = $this->model->rak_buku_dt()->get();
         return view('backend_view.master.rak_buku.rak_buku_index', compact('data'));
     }
-    public function save(Request $req)
+
+    public function store(Request $req)
     {
         $validasi = $this->validate($req, [
             'kode_dt' => 'required',

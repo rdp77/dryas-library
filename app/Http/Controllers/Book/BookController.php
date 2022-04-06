@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Book;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\models;
 use App\Models\Book;
-use Response;
-use Auth;
-use Storage;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
@@ -16,7 +15,6 @@ class BookController extends Controller
      *
      * @return void
      */
-    protected $model;
 
     public function __construct()
     {
@@ -33,6 +31,7 @@ class BookController extends Controller
         $data = Book::all();
         return view('backend_view.master.buku.buku_index', compact('data'));
     }
+
     public function create()
     {
         $id = $this->model->buku()->max('mb_id') + 1;
@@ -44,7 +43,8 @@ class BookController extends Controller
         $rak_bukus = $this->model->rak_buku_dt()->get();
         return view('backend_view.master.buku.buku_create', compact('kategoris', 'rak_bukus', 'penerbits', 'pengarangs', 'kode'));
     }
-    public function save(Request $req)
+
+    public function store(Request $req)
     {
         // return filesize($req->file('gambar'));
         DB::beginTransaction();
@@ -97,6 +97,7 @@ class BookController extends Controller
             return Response()->json(['status' => 'error']);
         }
     }
+
     public function edit(Request $req)
     {
         $data = $this->model->buku()->with('buku_dt')->where('mb_id', $req->id)->first();
@@ -106,6 +107,7 @@ class BookController extends Controller
         $rak_bukus = $this->model->rak_buku_dt()->get();
         return view('backend_view.master.buku.buku_edit', compact('kategoris', 'rak_bukus', 'penerbits', 'pengarangs', 'data'));
     }
+
     public function update(Request $req)
     {
         // dd($req->all());
@@ -173,7 +175,8 @@ class BookController extends Controller
             return Response()->json(['status' => 'error']);
         }
     }
-    public function hapus(Request $req)
+
+    public function destroy(Request $req)
     {
         $dt = $this->model->buku_dt()->where('mbdt_id', $req->id)->get();
         $d = 0;

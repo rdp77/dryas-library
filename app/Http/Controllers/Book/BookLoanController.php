@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Book;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use DB;
-use App\models;
-use Response;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class BookLoanController extends Controller
 {
@@ -15,12 +14,10 @@ class BookLoanController extends Controller
      *
      * @return void
      */
-    protected $model;
 
     public function __construct()
     {
         $this->middleware('auth');
-        $this->model = new models();
     }
 
     /**
@@ -30,9 +27,12 @@ class BookLoanController extends Controller
      */
     public function index()
     {
-        $data = $this->model->peminjaman()->with(['peminjaman_dt', 'peminjaman_dt.buku_dt', 'peminjaman_dt.buku_dt.buku', 'pengembalian'])->get();
+        $data = $this->model->peminjaman()->with([
+            'peminjaman_dt', 'peminjaman_dt.buku_dt', 'peminjaman_dt.buku_dt.buku', 'pengembalian'
+        ])->get();
         return view('backend_view.transaksi.peminjaman.peminjaman_index', compact('data'));
     }
+
     public function create()
     {
         $id = $this->model->peminjaman()->max('tpj_id') + 1;
@@ -46,12 +46,14 @@ class BookLoanController extends Controller
             ->get();
         return view('backend_view.transaksi.peminjaman.peminjaman_create', compact('user', 'kode', 'buku'));
     }
+
     public function get_data_buku(Request $req)
     {
         $buku = $this->model->buku_dt()->where('mbdt_isbn', $req->isbn)->with('buku')->first();
 
         return Response()->json(['status' => 'sukses', 'hasil' => $buku]);
     }
+
     public function get_data_buku_remove(Request $req)
     {
         $this->model->buku_dt()->where('mbdt_isbn', $req->isbn)->update([
@@ -65,7 +67,8 @@ class BookLoanController extends Controller
             ->get();
         return Response()->json(['status' => 'sukses', 'hasil' => $buku]);
     }
-    public function save(Request $req)
+
+    public function store(Request $req)
     {
         // dd($req->all());
 
@@ -135,6 +138,7 @@ class BookLoanController extends Controller
             return Response()->json(['status' => 'error']);
         }
     }
+
     public function edit(Request $req)
     {
         $data = $this->model->peminjaman()->with(['peminjaman_dt', 'peminjaman_dt.buku_dt', 'peminjaman_dt.buku_dt.buku'])->where('tpj_id', $req->id)->first();
@@ -147,6 +151,7 @@ class BookLoanController extends Controller
             ->get();
         return view('backend_view.transaksi.peminjaman.peminjaman_edit', compact('data', 'user', 'buku'));
     }
+
     public function update(Request $req)
     {
         DB::beginTransaction();
@@ -209,7 +214,8 @@ class BookLoanController extends Controller
             return Response()->json(['status' => 'error']);
         }
     }
-    public function hapus(Request $req)
+
+    public function destroy(Request $req)
     {
         $peminjaman_dt = $this->model->peminjaman_dt()->where('tpjdt_id', $req->id)->get();
         for ($i = 0; $i < count($peminjaman_dt); $i++) {
