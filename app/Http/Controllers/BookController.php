@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
 use App\models;
+use App\Models\Book;
 use Response;
 use Auth;
 use Storage;
 
-class bukuController extends Controller
+class BookController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -21,7 +21,6 @@ class bukuController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->model = new models();
     }
 
     /**
@@ -31,7 +30,7 @@ class bukuController extends Controller
      */
     public function index()
     {
-        $data = $this->model->buku()->get();
+        $data = Book::all();
         return view('backend_view.master.buku.buku_index', compact('data'));
     }
     public function create()

@@ -7,7 +7,7 @@ use DB;
 use App\models;
 use Response;
 
-class rak_buku_dtController extends Controller
+class BookshelfDetailController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -40,7 +40,7 @@ class rak_buku_dtController extends Controller
         ]);
         $id = $this->model->rak_buku_dt()->max('mrbd_dt') + 1;
         $id = $this->model->rak_buku_dt()->max('mrbd_id') + 1;
-        if ($validasi == true) {    
+        if ($validasi == true) {
             $this->model->rak_buku_dt()->create([
                 'mrbd_dt' => $id,
                 'mrbd_id' => 'mrb_id',

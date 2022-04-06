@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models;
+use App\Models\Catalog;
 
 class CatalogController extends Controller
 {
@@ -11,12 +11,6 @@ class CatalogController extends Controller
      *
      * @return void
      */
-    protected $model;
-
-    public function __construct()
-    {
-        $this->model = new Models();
-    }
 
     /**
      * Show the application dashboard.
@@ -25,7 +19,7 @@ class CatalogController extends Controller
      */
     public function getCatalog()
     {
-        $data = $this->model->buku_katalog()->get();
+        $data = Catalog::all();
         return view('pages.catalog', compact('data'));
     }
 }

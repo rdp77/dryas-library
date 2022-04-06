@@ -8,7 +8,7 @@ use App\models;
 use Response;
 use Auth;
 
-class transaksi_peminjamanController extends Controller
+class BookLoanController extends Controller
 {
     /**
      * Create a new controller instance.

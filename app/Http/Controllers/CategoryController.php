@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
-use App\models;
 
-class kategoriController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -17,7 +17,6 @@ class kategoriController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->model = new models();
     }
 
     /**
@@ -27,7 +26,7 @@ class kategoriController extends Controller
      */
     public function index()
     {
-        $data = $this->model->kategori()->get();
+        $data = Category::all();
         return view('backend_view.master.kategori.kategori_index', compact('data'));
     }
     public function create()

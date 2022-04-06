@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BookDetails;
+use App\Models\BookDetail;
 use App\Models\Log;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -34,8 +34,8 @@ class HomeController extends Controller
         $pengembalian = $this->calculatepengembalian();
         $total_user = User::where('previleges', '!=', '1')
             ->count();
-        $total_buku = BookDetails::count();
-        $total_buku_dipinjam = BookDetails::where('mbdt_status', 'TERPINJAM')
+        $total_buku = BookDetail::count();
+        $total_buku_dipinjam = BookDetail::where('mbdt_status', 'TERPINJAM')
             ->count();
         $total_buku_terpinjam = Log::where('log_feature', 'PEMINJAMAN')
             ->where('log_action', 'CREATE')

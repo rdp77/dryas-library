@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Author extends Author
+class Author extends Model
 {
   protected $table = 'm_pengarang';
   protected $primaryKey = 'mpg_id';

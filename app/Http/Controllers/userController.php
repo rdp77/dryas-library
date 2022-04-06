@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 use PDF;
 use Illuminate\Support\Facades\Hash;
 
-class userController extends Controller
+class UserController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -143,7 +143,7 @@ class userController extends Controller
         DB::table('users')->where('id', $req->id)->delete();
         return redirect()->back();
     }
-    public function perpanjang(Request $req)
+    public function extends(Request $req)
     {
         $users = DB::table('users')::table('users')->where('id', $req->id);
         $userdate = $users->first()->updated_at;

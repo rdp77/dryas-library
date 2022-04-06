@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\models;
 
-class previlegesController extends Controller
+class PrevilegesController extends Controller
 {
     /**
      * Create a new controller instance.

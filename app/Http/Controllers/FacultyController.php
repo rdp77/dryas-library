@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\models;
 
-class jurusanController extends Controller
+class FacultyController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -27,30 +27,27 @@ class jurusanController extends Controller
      */
     public function index()
     {
-        $data = $this->model->jurusan()->get();
+        $data = $this->model->fakultas()->get();
 
-        return view('backend_view.master.jurusan.jurusan_index', compact('data'));
+        return view('backend_view.master.fakultas.fakultas_index', compact('data'));
     }
     public function create()
     {
-        $kode = $this->kodejr();
-        $fakultas = $this->model->fakultas()->get();
-        return view('backend_view.master.jurusan.jurusan_create', compact('kode', 'fakultas'));
+        $kode = $this->kodefk();
+        return view('backend_view.master.fakultas.fakultas_create', compact('kode'));
     }
     public function save(Request $req)
     {
         $validasi = $this->validate($req, [
             'kode' => 'required',
             'name' => 'required',
-            'fakultas' => 'required',
         ]);
-        $id = $this->model->jurusan()->max('mj_id') + 1;
+        $id = $this->model->fakultas()->max('mf_id') + 1;
         if ($validasi == true) {
-            $this->model->jurusan()->create([
-                'mj_id' => $id,
-                'mj_kode' => $req->kode,
-                'mj_name' => $req->name,
-                'mj_fakultas' => $req->fakultas,
+            $this->model->fakultas()->create([
+                'mf_id' => $id,
+                'mf_kode' => $req->kode,
+                'mf_name' => $req->name,
             ]);
             return Response()->json(['status' => 'sukses']);
         } else {
@@ -59,22 +56,19 @@ class jurusanController extends Controller
     }
     public function edit(Request $req)
     {
-        $data = $this->model->jurusan()->where('mj_id', $req->id)->first();
-        $fakultass = $this->model->fakultas()->get();
-        return view('backend_view.master.jurusan.jurusan_edit', compact('data', 'fakultass'));
+        $data = $this->model->fakultas()->where('mf_id', $req->id)->first();
+        return view('backend_view.master.fakultas.fakultas_edit', compact('data'));
     }
     public function update(Request $req)
     {
         $validasi = $this->validate($req, [
             'kode' => 'required',
             'name' => 'required',
-            'fakultas' => 'required',
         ]);
         if ($validasi == true) {
-            $this->model->jurusan()->where('mj_id', $req->id)->update([
-                'mj_kode' => $req->kode,
-                'mj_name' => $req->name,
-                'mj_fakultas' => $req->fakultas,
+            $this->model->fakultas()->where('mf_id', $req->id)->update([
+                'mf_kode' => $req->kode,
+                'mf_name' => $req->name,
             ]);
             return Response()->json(['status' => 'sukses']);
         } else {
@@ -83,14 +77,14 @@ class jurusanController extends Controller
     }
     public function hapus(Request $req)
     {
-        $this->model->jurusan()->where('mj_id', $req->id)->delete();
+        $this->model->fakultas()->where('mf_id', $req->id)->delete();
         return redirect()->back();
     }
-    public function kodejr()
+    public function kodefk()
     {
-        $id = $this->model->jurusan()->max('mj_id') + 1;
+        $id = $this->model->fakultas()->max('mf_id') + 1;
         $date = date('m') . date('y');
-        $kode = 'JS/' . $date . '/' . str_pad($id, 5, '0', STR_PAD_LEFT);
+        $kode = 'FK/' . $date . '/' . str_pad($id, 5, '0', STR_PAD_LEFT);
         return $kode;
     }
 }

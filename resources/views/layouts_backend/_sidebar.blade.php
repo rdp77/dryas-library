@@ -50,25 +50,25 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ route('user_index') }}" class="nav-link">
+              <a href="{{ route('user.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>User</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('previleges_index') }}" class="nav-link">
+              <a href="{{ route('previleges.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Hak Akses</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('jurusan_index') }}" class="nav-link">
+              <a href="{{ route('major.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Jurusan</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('fakultas_index') }}" class="nav-link">
+              <a href="{{ route('faculty.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Fakultas</p>
               </a>
@@ -85,31 +85,31 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ route('buku_index') }}" class="nav-link">
+              <a href="{{ route('book.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Buku</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('kategori_index') }}" class="nav-link">
+              <a href="{{ route('category.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Kategori</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('pengarang_index') }}" class="nav-link">
+              <a href="{{ route('author.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Pengarang</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('penerbit_index') }}" class="nav-link">
+              <a href="{{ route('publisher.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Penerbit</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('rak_buku_index') }}" class="nav-link">
+              <a href="{{ route('bookshelf.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Rak buku</p>
               </a>
