@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Book;
 
 use App\Http\Controllers\Controller;
-use App\Models\BookAuthor;
+use App\Models\Book\BookAuthor;
 use Illuminate\Http\Request;
 
 class BookAuthorController extends Controller
@@ -42,9 +42,9 @@ class BookAuthorController extends Controller
             'alamat' => 'required',
             'tlp' => 'required',
         ]);
-        $id = $this->model->pengarang()->max('mpg_id') + 1;
+        $id = BookAuthor::max('mpg_id') + 1;
         if ($validasi == true) {
-            $this->model->pengarang()->create([
+            BookAuthor::create([
                 'mpg_id' => $id,
                 'mpg_name' => $req->name,
                 'mpg_alamat' => $req->alamat,
@@ -56,7 +56,7 @@ class BookAuthorController extends Controller
 
     public function edit(Request $req)
     {
-        $data = $this->model->pengarang()->where('mpg_id', $req->id)->first();
+        $data = BookAuthor::where('mpg_id', $req->id)->first();
         return view('backend_view.master.pengarang.pengarang_edit', compact('data'));
     }
 
@@ -68,7 +68,7 @@ class BookAuthorController extends Controller
             'tlp' => 'required',
         ]);
         if ($validasi == true) {
-            $this->model->pengarang()->where('mpg_id', $req->id)->update([
+            BookAuthor::where('mpg_id', $req->id)->update([
                 'mpg_name' => $req->name,
                 'mpg_alamat' => $req->alamat,
                 'mpg_tlp' => $req->tlp,
@@ -79,7 +79,7 @@ class BookAuthorController extends Controller
 
     public function destroy(Request $req)
     {
-        $this->model->pengarang()->where('mpg_id', $req->id)->delete();
+        BookAuthor::where('mpg_id', $req->id)->delete();
         return redirect()->back();
     }
 

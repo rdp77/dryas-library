@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Book;
 
 use App\Http\Controllers\Controller;
-use App\Models\BookCategory;
+use App\Models\Book\BookCategory;
 use Illuminate\Http\Request;
 
 class BookCategoryController extends Controller
@@ -40,9 +40,9 @@ class BookCategoryController extends Controller
         $validasi = $this->validate($req, [
             'name' => 'required',
         ]);
-        $id = $this->model->kategori()->max('mk_id') + 1;
+        $id = BookCategory::max('mk_id') + 1;
         if ($validasi == true) {
-            $this->model->kategori()->create([
+            BookCategory::create([
                 'mk_id' => $id,
                 'mk_name' => $req->name,
             ]);
@@ -52,7 +52,7 @@ class BookCategoryController extends Controller
 
     public function edit(Request $req)
     {
-        $data = $this->model->kategori()->where('mk_id', $req->id)->first();
+        $data = BookCategory::where('mk_id', $req->id)->first();
         return view('backend_view.master.kategori.kategori_edit', compact('data'));
     }
 
@@ -62,7 +62,7 @@ class BookCategoryController extends Controller
             'name' => 'required',
         ]);
         if ($validasi == true) {
-            $this->model->kategori()->where('mk_id', $req->id)->update([
+            BookCategory::where('mk_id', $req->id)->update([
                 'mk_name' => $req->name,
             ]);
             return Response()->json(['status' => 'sukses']);
@@ -71,7 +71,7 @@ class BookCategoryController extends Controller
 
     public function destroy(Request $req)
     {
-        $data = $this->model->kategori()->where('mk_id', $req->id)->delete();
+        $data = BookCategory::where('mk_id', $req->id)->delete();
         return redirect()->back();
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Book;
 
 use App\Http\Controllers\Controller;
+use App\Models\Book\BookshelfDetail;
 use Illuminate\Http\Request;
 
 class BookshelfDetailController extends Controller
@@ -25,8 +26,8 @@ class BookshelfDetailController extends Controller
      */
     public function index()
     {
-        $data = $this->model->rak_buku_dt()->with('m_rak_buku_dt')->get();
-        $data = $this->model->rak_buku_dt()->get();
+        $data = BookshelfDetail::with('m_rak_buku_dt')->get();
+        $data = BookshelfDetail::get();
         return view('backend_view.master.rak_buku.rak_buku_index', compact('data'));
     }
 
@@ -35,10 +36,10 @@ class BookshelfDetailController extends Controller
         $validasi = $this->validate($req, [
             'kode_dt' => 'required',
         ]);
-        $id = $this->model->rak_buku_dt()->max('mrbd_dt') + 1;
-        $id = $this->model->rak_buku_dt()->max('mrbd_id') + 1;
+        $id = BookshelfDetail::max('mrbd_dt') + 1;
+        $id = BookshelfDetail::max('mrbd_id') + 1;
         if ($validasi == true) {
-            $this->model->rak_buku_dt()->create([
+            BookshelfDetail::create([
                 'mrbd_dt' => $id,
                 'mrbd_id' => 'mrb_id',
                 'mrbd_kode' => $req->kode_dt,

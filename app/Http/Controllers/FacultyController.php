@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Faculty;
 use Illuminate\Http\Request;
 
 class FacultyController extends Controller
@@ -11,7 +12,6 @@ class FacultyController extends Controller
      *
      * @return void
      */
-    protected $model;
 
     public function __construct()
     {
@@ -25,7 +25,7 @@ class FacultyController extends Controller
      */
     public function index()
     {
-        $data = $this->model->fakultas()->get();
+        $data = Faculty::get();
 
         return view('backend_view.master.fakultas.fakultas_index', compact('data'));
     }
@@ -42,9 +42,9 @@ class FacultyController extends Controller
             'kode' => 'required',
             'name' => 'required',
         ]);
-        $id = $this->model->fakultas()->max('mf_id') + 1;
+        $id = Faculty::max('mf_id') + 1;
         if ($validasi == true) {
-            $this->model->fakultas()->create([
+            Faculty::create([
                 'mf_id' => $id,
                 'mf_kode' => $req->kode,
                 'mf_name' => $req->name,
@@ -57,7 +57,7 @@ class FacultyController extends Controller
 
     public function edit(Request $req)
     {
-        $data = $this->model->fakultas()->where('mf_id', $req->id)->first();
+        $data = Faculty::where('mf_id', $req->id)->first();
         return view('backend_view.master.fakultas.fakultas_edit', compact('data'));
     }
 
@@ -68,7 +68,7 @@ class FacultyController extends Controller
             'name' => 'required',
         ]);
         if ($validasi == true) {
-            $this->model->fakultas()->where('mf_id', $req->id)->update([
+            Faculty::where('mf_id', $req->id)->update([
                 'mf_kode' => $req->kode,
                 'mf_name' => $req->name,
             ]);
@@ -80,13 +80,13 @@ class FacultyController extends Controller
 
     public function destroy(Request $req)
     {
-        $this->model->fakultas()->where('mf_id', $req->id)->delete();
+        Faculty::where('mf_id', $req->id)->delete();
         return redirect()->back();
     }
 
     public function kodefk()
     {
-        $id = $this->model->fakultas()->max('mf_id') + 1;
+        $id = Faculty::max('mf_id') + 1;
         $date = date('m') . date('y');
         $kode = 'FK/' . $date . '/' . str_pad($id, 5, '0', STR_PAD_LEFT);
         return $kode;

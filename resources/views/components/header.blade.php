@@ -1,6 +1,6 @@
 <!-- Header section -->
 <header class="header-section clearfix">
-    <a href="{{ route('welcome') }}" class="site-logo">
+    <a href="{{ route('pages.home') }}" class="site-logo">
         <h4><span>Dryas</span> Library</h4>
     </a>
     <div class="header-right">
@@ -15,9 +15,9 @@
         </div>
     </div>
     <ul class="main-menu">
-        <li><a href="{{ route('welcome') }}">Home</a></li>
-        <li><a href="{{ route('catalog') }}">Catalog</a></li>
-        <li><a href="{{ route('about') }}">About</a></li>
-        <li><a href="{{ route('team') }}">Our Team</a></li>
+        <li><a href="{{ route('pages.home') }}">Home</a></li>
+        <li><a href="{{ route('pages.catalog') }}">Catalog</a></li>
+        <li><a href="{{ route('pages.about') }}">About</a></li>
+        <li><a href="{{ route('pages.team') }}">Our Team</a></li>
     </ul>
 </header>

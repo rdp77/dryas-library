@@ -37,11 +37,12 @@ class UserController extends Controller
             ->get();
         $datas = User::where('previleges', '=', '1')
             ->get();
-        return view('backend_view.master.user.user_index', [
+        return view('pages.backend.data.user.indexUser', [
             'data' => $data,
             'datas' => $datas
         ]);
     }
+
     public function create()
     {
         $previlege = Previleges::all();
@@ -51,7 +52,7 @@ class UserController extends Controller
     }
     public function save(Request $req)
     {
-        $id = $this->model->user()->max('id') + 1;
+        $id = User::max('id') + 1;
         $validasi = $this->validate($req, [
             'name' => 'required',
             'email' => ['required', 'email'],
@@ -72,7 +73,7 @@ class UserController extends Controller
                 ? $kode =  $this->kodedsn()
                 :  $kode =  $this->kodemhs());
         if ($validasi == true) {
-            $this->model->user()->create([
+            User::create([
                 'id' => $id,
                 'name' => $req->name,
                 'email' => $req->email,
@@ -95,7 +96,7 @@ class UserController extends Controller
     }
     public function edit(Request $req)
     {
-        $data = $this->model->user()->where('id', $req->id)->first();
+        $data = User::where('id', $req->id)->first();
         $previlege = $this->model->previleges()->get();
         $fakultas = $this->model->fakultas()->get();
         $jurusan = $this->model->jurusan()->get();
@@ -122,7 +123,7 @@ class UserController extends Controller
                 ? $kode =  $this->kodedsn()
                 :  $kode =  $this->kodemhs());
         if ($validasi == true) {
-            $this->model->user()->where('id', $req->id)->update([
+            User::where('id', $req->id)->update([
                 'name' => $req->name,
                 'email' => $req->email,
                 'previleges' => $req->previleges,
@@ -150,61 +151,6 @@ class UserController extends Controller
         $newdate = date("Y-m-d H:i:s", strtotime("+4 years", strtotime($userdate)));
         $users->update(['updated_at' => $newdate]);
         return redirect()->back();
-    }
-    public function profile()
-    {
-        $data = $this->model->user()->get();
-        $user_aktif = $this->useraktif();
-        return view('backend_view.master.user.profile.profile_index', compact('data', 'user_aktif'));
-    }
-    public function profileedit(Request $req)
-    {
-        $data = $this->model->user()->where('id', $req->id)->first();
-        $fakultas = $this->model->fakultas()->get();
-        $jurusan = $this->model->jurusan()->get();
-        return view('backend_view.master.user.profile.profile_edit', compact('data', 'fakultas', 'jurusan'));
-    }
-    public function profileupdate(Request $req)
-    {
-        $validasi = $this->validate($req, [
-            'photo' => 'image|mimes:jpeg,png,jpg,svg|max:2000',
-            'name' => 'required',
-            'email' => ['required', 'email'],
-            'address' => 'required',
-            'tlp' => 'required',
-            'reg' => 'required',
-            'username' => 'required',
-        ]);
-        if ($req->hasFile('photo')) {
-            $imagePath = $req->file('photo');
-            $fileName =  $req->id . '.' . $imagePath->getClientOriginalExtension();
-            $imagePath->move(public_path('storage/user'), $fileName);
-        } else {
-            $fileName =  'default.svg';
-        }
-        if ($validasi == true) {
-            $this->model->user()->where('id', $req->id)->update([
-                'photo' => $fileName,
-                'name' => $req->name,
-                'email' => $req->email,
-                'address' => $req->address,
-                'tlp' => $req->tlp,
-                'registration_kode' => $req->reg,
-                'username' => $req->username,
-                'fakultas' => $req->fakultas,
-                'jurusan' => $req->jurusan,
-            ]);
-            return Response()->json(['status' => 'sukses']);
-        }
-    }
-    public function profileprint()
-    {
-        if (Auth::user()->username == null) {
-            return redirect()->route('profile_index')->with(['status' => 'Pastikan sudah mengisi semua data diri']);
-        } else {
-            $pdf = PDF::loadView('backend_view.master.user.profile.profile_print');
-            return $pdf->stream("ID Card " . Auth::user()->name . ".pdf", array("Attachment" => 0));
-        }
     }
     public function kodemhs()
     {

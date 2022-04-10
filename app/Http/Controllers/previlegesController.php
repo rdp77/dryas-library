@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Previleges;
 use Illuminate\Http\Request;
 
 class PrevilegesController extends Controller
@@ -11,7 +12,6 @@ class PrevilegesController extends Controller
      *
      * @return void
      */
-    protected $model;
 
     public function __construct()
     {
@@ -25,7 +25,7 @@ class PrevilegesController extends Controller
      */
     public function index()
     {
-        $data = $this->model->previleges()->get();
+        $data = Previleges::get();
         return view('backend_view.master.previleges.previleges_index', compact('data'));
     }
     public function create()
@@ -37,9 +37,9 @@ class PrevilegesController extends Controller
         $validasi = $this->validate($req, [
             'name' => 'required',
         ]);
-        $id = $this->model->previleges()->max('mp_id') + 1;
+        $id = Previleges::max('mp_id') + 1;
         if ($validasi == true) {
-            $this->model->previleges()->create([
+            Previleges::create([
                 'mp_id' => $id,
                 'mp_name' => $req->name,
             ]);
@@ -48,7 +48,7 @@ class PrevilegesController extends Controller
     }
     public function edit(Request $req)
     {
-        $data = $this->model->previleges()->where('mp_id', $req->id)->first();
+        $data = Previleges::where('mp_id', $req->id)->first();
         return view('backend_view.master.previleges.previleges_edit', compact('data'));
     }
     public function update(Request $req)
@@ -57,7 +57,7 @@ class PrevilegesController extends Controller
             'name' => 'required',
         ]);
         if ($validasi == true) {
-            $this->model->previleges()->where('mp_id', $req->id)->update([
+            Previleges::where('mp_id', $req->id)->update([
                 'mp_name' => $req->name,
             ]);
             return Response()->json(['status' => 'sukses']);
@@ -65,7 +65,7 @@ class PrevilegesController extends Controller
     }
     public function destroy(Request $req)
     {
-        $this->model->previleges()->where('mp_id', $req->id)->delete();
+        Previleges::where('mp_id', $req->id)->delete();
         return redirect()->back();
     }
 }

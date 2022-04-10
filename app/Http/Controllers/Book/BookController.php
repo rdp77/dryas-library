@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Book;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Book;
+use App\Models\Book\Book;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -34,7 +34,7 @@ class BookController extends Controller
 
     public function create()
     {
-        $id = $this->model->buku()->max('mb_id') + 1;
+        $id = Book::max('mb_id') + 1;
         $date = date('m') . date('y');
         $kode = 'BK/' . $date . '/' . str_pad($id, 5, '0', STR_PAD_LEFT);
         $kategoris = $this->model->kategori()->get();
@@ -50,7 +50,7 @@ class BookController extends Controller
         DB::beginTransaction();
         try {
             // dd($req->all());
-            $id = $this->model->buku()->max('mb_id') + 1;
+            $id = Book::max('mb_id') + 1;
             if (filesize($req->file('gambar')) > 2000000) {
                 return Response()->json(['status' => 'big_image']);
             } elseif ($req->hasFile('gambar')) {
@@ -63,7 +63,7 @@ class BookController extends Controller
                 $fileNames = 'default.svg';
             }
 
-            $this->model->buku()->create([
+            Book::create([
                 'mb_id' => $id,
                 'mb_kode' => $req->kode,
                 'mb_kategori' => $req->kategori,
@@ -100,7 +100,7 @@ class BookController extends Controller
 
     public function edit(Request $req)
     {
-        $data = $this->model->buku()->with('buku_dt')->where('mb_id', $req->id)->first();
+        $data = Book::with('buku_dt')->where('mb_id', $req->id)->first();
         $kategoris = $this->model->kategori()->get();
         $penerbits = $this->model->penerbit()->get();
         $pengarangs = $this->model->pengarang()->get();
@@ -137,7 +137,7 @@ class BookController extends Controller
                 $fileNames = 'default.svg';
             }
 
-            $this->model->buku()->where('mb_id', $req->id)->update([
+            Book::where('mb_id', $req->id)->update([
                 'mb_kategori' => $req->kategori,
                 'mb_penerbit' => $req->penerbit,
                 'mb_pengarang' => $req->pengarang,
@@ -186,7 +186,7 @@ class BookController extends Controller
             }
         }
         return $d;
-        $this->model->buku()->where('mb_id', $req->id)->delete();
+        Book::where('mb_id', $req->id)->delete();
         $this->model->buku_dt()->where('mbdt_id', $req->id)->delete();
         return redirect()->back();
     }

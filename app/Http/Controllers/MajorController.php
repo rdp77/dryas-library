@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Major;
 use Illuminate\Http\Request;
 
 class MajorController extends Controller
@@ -11,7 +12,6 @@ class MajorController extends Controller
      *
      * @return void
      */
-    protected $model;
 
     public function __construct()
     {
@@ -25,7 +25,7 @@ class MajorController extends Controller
      */
     public function index()
     {
-        $data = $this->model->jurusan()->get();
+        $data = Major::get();
 
         return view('backend_view.master.jurusan.jurusan_index', compact('data'));
     }
@@ -42,9 +42,9 @@ class MajorController extends Controller
             'name' => 'required',
             'fakultas' => 'required',
         ]);
-        $id = $this->model->jurusan()->max('mj_id') + 1;
+        $id = Major::max('mj_id') + 1;
         if ($validasi == true) {
-            $this->model->jurusan()->create([
+            Major::create([
                 'mj_id' => $id,
                 'mj_kode' => $req->kode,
                 'mj_name' => $req->name,
@@ -57,7 +57,7 @@ class MajorController extends Controller
     }
     public function edit(Request $req)
     {
-        $data = $this->model->jurusan()->where('mj_id', $req->id)->first();
+        $data = Major::where('mj_id', $req->id)->first();
         $fakultass = $this->model->fakultas()->get();
         return view('backend_view.master.jurusan.jurusan_edit', compact('data', 'fakultass'));
     }
@@ -69,7 +69,7 @@ class MajorController extends Controller
             'fakultas' => 'required',
         ]);
         if ($validasi == true) {
-            $this->model->jurusan()->where('mj_id', $req->id)->update([
+            Major::where('mj_id', $req->id)->update([
                 'mj_kode' => $req->kode,
                 'mj_name' => $req->name,
                 'mj_fakultas' => $req->fakultas,
@@ -81,12 +81,12 @@ class MajorController extends Controller
     }
     public function destroy(Request $req)
     {
-        $this->model->jurusan()->where('mj_id', $req->id)->delete();
+        Major::where('mj_id', $req->id)->delete();
         return redirect()->back();
     }
     public function kodejr()
     {
-        $id = $this->model->jurusan()->max('mj_id') + 1;
+        $id = Major::max('mj_id') + 1;
         $date = date('m') . date('y');
         $kode = 'JS/' . $date . '/' . str_pad($id, 5, '0', STR_PAD_LEFT);
         return $kode;

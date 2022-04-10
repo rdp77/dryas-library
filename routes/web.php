@@ -1,6 +1,20 @@
 <?php
 
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Book\BookController;
+use App\Http\Controllers\Book\BookLoanController;
+use App\Http\Controllers\Book\BookReturnController;
+use App\Http\Controllers\Book\BookshelfController;
+use App\Http\Controllers\Book\BookAuthorController;
+use App\Http\Controllers\Book\BookPublisherController;
+use App\Http\Controllers\Book\BookCategoryController;
+use App\Http\Controllers\PrevilegesController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\FacultyController;
+use App\Http\Controllers\MajorController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,136 +28,46 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/dashboard', 'HomeController@index')->name('home');
-// Profile
-Route::get('/profile', 'UserController@profile')->name('profile_index');
-Route::get('/profile_edit', 'UserController@profileedit')->name('profile_edit');
-Route::post('/profile_update', 'UserController@profileupdate')->name('profile_update');
-Route::get('/idcard_print', 'UserController@profileprint')->name('profile_print');
-// Profile Password
-Route::get('/forgot_password', 'Auth\ForgotPasswordController@index')->name('forgot_password_index');
-Route::get('/change_password', 'Auth\ForgotPasswordController@changepassword')->name('forgot_password');
-Route::get('/password_reset', 'Auth\ForgotPasswordController@logout')->name('password_reset');
-// Transaksi
-Route::get('/transaksi_peminjaman', 'transaksi_peminjamanController@index')
-    ->name('transaksi_peminjaman_index');
-Route::get('/transaksi_pengembalian', 'transaksi_pengembalianController@index')
-    ->name('transaksi_pengembalian_index');
+Route::get('/dashboard', [HomeController::class, 'index'])
+    ->name('home');
 
 Auth::routes();
 
 Route::group(['middleware' => 'roles'], function () {
-    // // User
-    // Route::get('/user', 'UserController@index')->name('user_index');
-    // Route::get('/user_create', 'UserController@create')->name('user_create');
-    // Route::get('/user_save', 'UserController@save')->name('user_save');
-    // Route::get('/user_edit', 'UserController@edit')->name('user_edit');
-    // Route::get('/user_update', 'UserController@update')->name('user_update');
-    // Route::get('/user_hapus', 'UserController@hapus')->name('user_hapus');
-    // Route::get('/user_perpanjang', 'UserController@perpanjang')->name('user_perpanjang');
-    Route::get('/user-extends', [userController::class, 'extends'])->name('userExtends');
-    // // Previleges
-    // Route::get('/previleges', 'previlegesController@index')->name('previleges_index');
-    // Route::get('/previleges_create', 'previlegesController@create')->name('previleges_create');
-    // Route::get('/previleges_save', 'previlegesController@save')->name('previleges_save');
-    // Route::get('/previleges_edit', 'previlegesController@edit')->name('previleges_edit');
-    // Route::get('/previleges_update', 'previlegesController@update')->name('previleges_update');
-    // Route::get('/previleges_hapus', 'previlegesController@hapus')->name('previleges_hapus');
-    // // Kategori
-    // Route::get('/kategori', 'kategoriController@index')->name('kategori_index');
-    // Route::get('/kategori_create', 'kategoriController@create')->name('kategori_create');
-    // Route::get('/kategori_save', 'kategoriController@save')->name('kategori_save');
-    // Route::get('/kategori_edit', 'kategoriController@edit')->name('kategori_edit');
-    // Route::get('/kategori_update', 'kategoriController@update')->name('kategori_update');
-    // Route::get('/kategori_hapus', 'kategoriController@hapus')->name('kategori_hapus');
-    // // Pengarang
     Route::resources([
-        'user' => UserController::class,
+        'users' => UserController::class,
         'previleges' => PrevilegesController::class,
-        'category' => CategoryController::class,
-        'author' => AuthorController::class,
-        'publisher' => PublisherController::class,
-        'bookshelf' => BookshelfController::class,
         'faculty' => FacultyController::class,
         'major' => MajorController::class,
         'book' => BookController::class,
         'book-loan' => BookLoanController::class,
         'book-return' => BookReturnController::class,
+        'author' => BookAuthorController::class,
+        'category' => BookCategoryController::class,
+        'publisher' => BookPublisherController::class,
+        'bookshelf' => BookshelfController::class,
     ]);
-    // Route::get('/pengarang', 'pengarangController@index')->name('pengarang_index');
-    // Route::get('/pengarang_create', 'pengarangController@create')->name('pengarang_create');
-    // Route::get('/pengarang_save', 'pengarangController@save')->name('pengarang_save');
-    // Route::get('/pengarang_edit', 'pengarangController@edit')->name('pengarang_edit');
-    // Route::get('/pengarang_update', 'pengarangController@update')->name('pengarang_update');
-    // Route::get('/pengarang_hapus', 'pengarangController@hapus')->name('pengarang_hapus');
-    // // Penerbit
-    // Route::get('/penerbit', 'penerbitController@index')->name('penerbit_index');
-    // Route::get('/penerbit_create', 'penerbitController@create')->name('penerbit_create');
-    // Route::get('/penerbit_save', 'penerbitController@save')->name('penerbit_save');
-    // Route::get('/penerbit_edit', 'penerbitController@edit')->name('penerbit_edit');
-    // Route::get('/penerbit_update', 'penerbitController@update')->name('penerbit_update');
-    // Route::get('/penerbit_hapus', 'penerbitController@hapus')->name('penerbit_hapus');
-    // // Rak Buku
-    // Route::get('/rak_buku', 'rak_bukuController@index')->name('rak_buku_index');
-    // Route::get('/rak_buku_create', 'rak_bukuController@create')->name('rak_buku_create');
-    // Route::get('/rak_buku_save', 'rak_bukuController@save')->name('rak_buku_save');
-    // Route::get('/rak_buku_edit', 'rak_bukuController@edit')->name('rak_buku_edit');
-    // Route::get('/rak_buku_update', 'rak_bukuController@update')->name('rak_buku_update');
-    // Route::get('/rak_buku_hapus', 'rak_bukuController@hapus')->name('rak_buku_hapus');
-    Route::get('/rak_buku_get_kode', 'rak_bukuController@get_kode')->name('rak_buku_get_kode');
-    Route::get('/rak_buku_dt_save', 'rak_bukuController@save_dt')->name('rak_buku_dt_save');
-    Route::get('/rak_buku_dt_delete', 'rak_bukuController@deletes_dt')->name('rak_buku_dt_delete');
-    // // Fakultas
-    // Route::get('/fakultas', 'fakultasController@index')->name('fakultas_index');
-    // Route::get('/fakultas_create', 'fakultasController@create')->name('fakultas_create');
-    // Route::get('/fakultas_save', 'fakultasController@save')->name('fakultas_save');
-    // Route::get('/fakultas_edit', 'fakultasController@edit')->name('fakultas_edit');
-    // Route::get('/fakultas_update', 'fakultasController@update')->name('fakultas_update');
-    // Route::get('/fakultas_hapus', 'fakultasController@hapus')->name('fakultas_hapus');
-    // //Jurusan
-    // Route::get('/jurusan', 'jurusanController@index')->name('jurusan_index');
-    // Route::get('/jurusan_create', 'jurusanController@create')->name('jurusan_create');
-    // Route::get('/jurusan_save', 'jurusanController@save')->name('jurusan_save');
-    // Route::get('/jurusan_edit', 'jurusanController@edit')->name('jurusan_edit');
-    // Route::get('/jurusan_update', 'jurusanController@update')->name('jurusan_update');
-    // Route::get('/jurusan_hapus', 'jurusanController@hapus')->name('jurusan_hapus');
-    // // Buku
-    // Route::get('/buku', 'bukuController@index')->name('buku_index');
-    // Route::get('/buku_create', 'bukuController@create')->name('buku_create');
-    // Route::post('/buku_save', 'bukuController@save')->name('buku_save');
-    // Route::get('/buku_edit', 'bukuController@edit')->name('buku_edit');
-    // Route::post('/buku_update', 'bukuController@update')->name('buku_update');
-    // Route::get('/buku_hapus', 'bukuController@hapus')->name('buku_hapus');
-    // // Peminjaman
-    // Route::get('/transaksi_peminjaman_create', 'transaksi_peminjamanController@create')
-    //     ->name('transaksi_peminjaman_create');
-    // Route::get('/transaksi_peminjaman_save', 'transaksi_peminjamanController@save')
-    //     ->name('transaksi_peminjaman_save');
-    // Route::get('/transaksi_peminjaman_edit', 'transaksi_peminjamanController@edit')
-    //     ->name('transaksi_peminjaman_edit');
-    // Route::get('/transaksi_peminjaman_update', 'transaksi_peminjamanController@update')
-    //     ->name('transaksi_peminjaman_update');
-    // Route::get('/transaksi_peminjaman_hapus', 'transaksi_peminjamanController@hapus')
-    //     ->name('transaksi_peminjaman_hapus');
-    Route::get('/transaksi_peminjaman_get_data_buku', 'transaksi_peminjamanController@get_data_buku')
+
+    Route::prefix('user')->group(function () {
+        Route::get('/extends', [UserController::class, 'extends'])
+            ->name('userExtends');
+        // Profile
+        Route::resource('profile', ProfileController::class)->only(['index', 'edit', 'update']);
+        // Profile Password
+        Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])
+            ->name('user.forgotPassword');
+        Route::get('/change-password', [ForgotPasswordController::class, 'changepassword'])
+            ->name('user.changePassword');
+        Route::get('/reset-password', [ForgotPasswordController::class, 'logout'])
+            ->name('user.resetPassword');
+        Route::get('/print/idcard', [UserController::class, 'profileprint'])
+            ->name('user.profile.print');
+    });
+
+    Route::get('/transaksi_peminjaman_get_data_buku', [BookLoanController::class, 'get_data_buku'])
         ->name('transaksi_peminjaman_get_data_buku');
-    Route::get('/transaksi_peminjaman_get_data_buku_remove', 'transaksi_peminjamanController@get_data_buku_remove')
+    Route::get('/transaksi_peminjaman_get_data_buku_remove', [BookLoanController::class, 'get_data_buku_remove'])
         ->name('transaksi_peminjaman_get_data_buku_remove');
-    // // Pengembalian
-    // Route::get('/transaksi_pengembalian_create', 'transaksi_pengembalianController@create')
-    //     ->name('transaksi_pengembalian_create');
-    // Route::get('/transaksi_pengembalian_save', 'transaksi_pengembalianController@save')
-    //     ->name('transaksi_pengembalian_save');
-    // Route::get('/transaksi_pengembalian_edit', 'transaksi_pengembalianController@edit')
-    //     ->name('transaksi_pengembalian_edit');
-    // Route::get('/transaksi_pengembalian_update', 'transaksi_pengembalianController@update')
-    //     ->name('transaksi_pengembalian_update');
-    // Route::get('/transaksi_pengembalian_hapus', 'transaksi_pengembalianController@hapus')
-    //     ->name('transaksi_pengembalian_hapus');
-    Route::get('/transaksi_pengembalian_get_data_peminjaman', 'transaksi_pengembalianController@get_data_peminjaman')
-        ->name('transaksi_pengembalian_get_data_peminjaman');
-    Route::get('/transaksi_pengembalian_get_data_pengembalian', 'transaksi_pengembalianController@get_data_pengembalian')
-        ->name('transaksi_pengembalian_get_data_pengembalian');
 });
 
 require __DIR__ . '/frontend.php';

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FrontEndController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,13 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
-Route::get('/team', function () {
-    return view('pages.team');
-})->name('team');
-Route::get('/about', function () {
-    return view('pages.about');
-})->name('about');
-Route::get('/catalog', 'catalogController@getCatalog')->name('catalog');
+Route::get('/', [FrontEndController::class, 'index'])
+    ->name('pages.home');
+Route::get('/team', [FrontEndController::class, 'team'])
+    ->name('pages.team');
+Route::get('/about', [FrontEndController::class, 'about'])
+    ->name('pages.about');
+Route::get('/catalog', [FrontEndController::class, 'catalog'])
+    ->name('pages.catalog');

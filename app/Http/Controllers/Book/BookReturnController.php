@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Book;
 
 use App\Http\Controllers\Controller;
+use App\Models\Book\BookReturn;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +18,7 @@ class BookReturnController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'roles'])->except('index');
     }
 
     /**
@@ -27,7 +28,7 @@ class BookReturnController extends Controller
      */
     public function index()
     {
-        $data = $this->model->pengembalian()->with([
+        $data = BookReturn::with([
             'pengembalian_dt', 'pengembalian_dt.buku_dt', 'pengembalian_dt.buku_dt.buku'
         ])->get();
         return view('backend_view.transaksi.pengembalian.pengembalian_index', compact('data'));
@@ -35,7 +36,7 @@ class BookReturnController extends Controller
 
     public function create()
     {
-        $id = $this->model->pengembalian()->max('tpg_id') + 1;
+        $id = BookReturn::max('tpg_id') + 1;
         $date = date('m') . date('y');
         $kode = 'PG/' . $date . '/' . str_pad($id, 5, '0', STR_PAD_LEFT);
         $peminjaman = $this->model->peminjaman()->DoesntHave('pengembalian')->with('peminjaman_anggota')->get();
@@ -51,7 +52,7 @@ class BookReturnController extends Controller
 
     public function get_data_pengembalian(Request $req)
     {
-        $data = $this->model->pengembalian()->with(['pengembalian_anggota', 'pengembalian_dt', 'pengembalian_dt.buku_dt', 'pengembalian_dt.buku_dt.buku'])->where('tpg_peminjaman', $req->id_peminjaman)->first();
+        $data = BookReturn::with(['pengembalian_anggota', 'pengembalian_dt', 'pengembalian_dt.buku_dt', 'pengembalian_dt.buku_dt.buku'])->where('tpg_peminjaman', $req->id_peminjaman)->first();
 
         return Response()->json(['status' => 'sukses', 'hasil' => $data]);
     }
@@ -63,8 +64,8 @@ class BookReturnController extends Controller
         try {
             $total_unique = array_unique($req->isbn);
 
-            $id = $this->model->pengembalian()->max('tpg_id') + 1;
-            $this->model->pengembalian()->create([
+            $id = BookReturn::max('tpg_id') + 1;
+            BookReturn::create([
                 'tpg_id' => $id,
                 'tpg_kode' => $req->kode,
                 'tpg_peminjaman' => $req->kode_pinjam,
@@ -117,8 +118,8 @@ class BookReturnController extends Controller
 
     public function edit(Request $req)
     {
-        $data = $this->model->pengembalian()->with(['pengembalian_dt', 'pengembalian_dt.buku_dt', 'pengembalian_dt.buku_dt.buku'])->where('tpg_id', $req->id)->first();
-        $data_ex = $this->model->pengembalian()->select('tpg_peminjaman')->where('tpg_id', '!=', $data->tpg_peminjaman)->get();
+        $data = BookReturn::with(['pengembalian_dt', 'pengembalian_dt.buku_dt', 'pengembalian_dt.buku_dt.buku'])->where('tpg_id', $req->id)->first();
+        $data_ex = BookReturn::select('tpg_peminjaman')->where('tpg_id', '!=', $data->tpg_peminjaman)->get();
         $dt_ex = [];
         for ($i = 0; $i < count($data_ex); $i++) {
             $dt_ex[] = $data_ex[$i]->tpg_peminjaman;
@@ -142,7 +143,7 @@ class BookReturnController extends Controller
     {
         DB::beginTransaction();
         try {
-            $this->model->pengembalian()->where('tpg_id', $req->id)->update([
+            BookReturn::where('tpg_id', $req->id)->update([
                 'tpg_date_kembali' => date('Y-m-d', strtotime($req->tgl_kembali)),
             ]);
             DB::commit();
@@ -159,7 +160,7 @@ class BookReturnController extends Controller
 
     public function destroy(Request $req)
     {
-        return $pengembalian = $this->model->pengembalian()->where('tpg_id', $req->id)->get();
+        return $pengembalian = BookReturn::where('tpg_id', $req->id)->get();
         $pengembalian_dt = $this->model->pengembalian_dt()->where('tpgdt_id', $req->id)->get();
 
         // for ($i=0; $i <count($pengembalian_dt) ; $i++) { 
@@ -169,11 +170,11 @@ class BookReturnController extends Controller
         //         ]);
         // }
 
-        $peminjaman_dt = $this->model->pengembalian()->where('tpg_id', $pengembalian->tpg_peminjaman)->get();
+        $peminjaman_dt = BookReturn::where('tpg_id', $pengembalian->tpg_peminjaman)->get();
         $pengembalian_dt = $this->model->pengembalian_dt()->where('tpgdt_id', $pengembalian->tpg_peminjaman)->get();
 
 
-        $data = $this->model->pengembalian()->where('tpj_id', $req->id)->delete();
+        $data = BookReturn::where('tpj_id', $req->id)->delete();
         $data = $this->model->pengembalian_dt()->where('tpjdt_id', $req->id)->delete();
         return redirect()->back();
     }

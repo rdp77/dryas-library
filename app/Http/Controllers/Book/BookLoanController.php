@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Book;
 
 use App\Http\Controllers\Controller;
+use App\Models\Book\BookLoan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +18,7 @@ class BookLoanController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'roles'])->except('index');
     }
 
     /**
@@ -27,7 +28,7 @@ class BookLoanController extends Controller
      */
     public function index()
     {
-        $data = $this->model->peminjaman()->with([
+        $data = BookLoan::with([
             'peminjaman_dt', 'peminjaman_dt.buku_dt', 'peminjaman_dt.buku_dt.buku', 'pengembalian'
         ])->get();
         return view('backend_view.transaksi.peminjaman.peminjaman_index', compact('data'));
@@ -35,7 +36,7 @@ class BookLoanController extends Controller
 
     public function create()
     {
-        $id = $this->model->peminjaman()->max('tpj_id') + 1;
+        $id = BookLoan::max('tpj_id') + 1;
         $date = date('m') . date('y');
         $kode = 'PJ/' . $date . '/' . str_pad($id, 5, '0', STR_PAD_LEFT);
         $user = $this->model->user()->get();
@@ -90,8 +91,8 @@ class BookLoanController extends Controller
                 return Response()->json(['status' => 'bukan_user']);
             }
 
-            $id = $this->model->peminjaman()->max('tpj_id') + 1;
-            $this->model->peminjaman()->create([
+            $id = BookLoan::max('tpj_id') + 1;
+            BookLoan::create([
                 'tpj_id' => $id,
                 'tpj_kode' => $req->kode,
                 'tpj_anggota' => $req->peminjam,
@@ -141,7 +142,7 @@ class BookLoanController extends Controller
 
     public function edit(Request $req)
     {
-        $data = $this->model->peminjaman()->with(['peminjaman_dt', 'peminjaman_dt.buku_dt', 'peminjaman_dt.buku_dt.buku'])->where('tpj_id', $req->id)->first();
+        $data = BookLoan::with(['peminjaman_dt', 'peminjaman_dt.buku_dt', 'peminjaman_dt.buku_dt.buku'])->where('tpj_id', $req->id)->first();
         $user = $this->model->user()->get();
         $buku = $this->model->buku_dt()
             ->where('mbdt_status', 'TERSEDIA')
@@ -172,7 +173,7 @@ class BookLoanController extends Controller
                 return Response()->json(['status' => 'bukan_user']);
             }
 
-            $this->model->peminjaman()->where('tpj_id', $req->id)->update([
+            BookLoan::where('tpj_id', $req->id)->update([
                 'tpj_anggota' => $req->peminjam,
                 'tpj_staff' => Auth::user()->id,
                 'tpj_date_pinjam' => date('Y-m-d'),
@@ -225,7 +226,7 @@ class BookLoanController extends Controller
                 ]);
         }
 
-        $data = $this->model->peminjaman()->where('tpj_id', $req->id)->delete();
+        $data = BookLoan::where('tpj_id', $req->id)->delete();
         $data = $this->model->peminjaman_dt()->where('tpjdt_id', $req->id)->delete();
         return redirect()->back();
     }

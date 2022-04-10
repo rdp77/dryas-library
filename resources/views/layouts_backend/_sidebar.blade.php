@@ -13,7 +13,7 @@
         <img src="{{ asset('storage/user/'.Auth::user()->photo) }}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="{{ route('profile_index') }}" class="d-block">Hy {{ Auth::user()->name }}</a>
+        <a href="{{ route('profile.index') }}" class="d-block">Hy {{ Auth::user()->name }}</a>
       </div>
     </div>
 
@@ -23,7 +23,7 @@
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
         <li class="nav-item">
-          <a href="{{ route('welcome') }}" class="nav-link">
+          <a href="{{ route('pages.home') }}" class="nav-link">
             <i class="nav-icon fas fa-home"></i>
             <p>
               Homepage
@@ -50,7 +50,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ route('user.index') }}" class="nav-link">
+              <a href="{{ route('users.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>User</p>
               </a>
@@ -118,13 +118,13 @@
         </li>
         <li class="nav-header">TRANSAKSI</li>
         <li class="nav-item">
-          <a href="{{ route('transaksi_peminjaman_index') }}" class="nav-link">
+          <a href="{{ route('book-loan.index') }}" class="nav-link">
             <i class="nav-icon fas fa-book-reader"></i>
             <p>Peminjaman</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('transaksi_pengembalian_index') }}" class="nav-link">
+          <a href="{{ route('book-return.index') }}" class="nav-link">
             <i class="nav-icon fas fa-arrow-alt-circle-left"></i>
             <p>Pengembalian</p>
           </a>
@@ -132,13 +132,13 @@
         @else
         <li class="nav-header">TRANSAKSI</li>
         <li class="nav-item">
-          <a href="{{ route('transaksi_peminjaman_index') }}" class="nav-link">
+          <a href="{{ route('book-loan.index') }}" class="nav-link">
             <i class="nav-icon fas fa-book-reader"></i>
             <p>Peminjaman</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('transaksi_pengembalian_index') }}" class="nav-link">
+          <a href="{{ route('book-return.index') }}" class="nav-link">
             <i class="nav-icon fas fa-arrow-alt-circle-left"></i>
             <p>Pengembalian</p>
           </a>

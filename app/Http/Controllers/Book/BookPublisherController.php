@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Book;
 
 use App\Http\Controllers\Controller;
+use App\Models\Book\BookPublisher;
 use Illuminate\Http\Request;
 
 class BookPublisherController extends Controller
@@ -25,7 +26,7 @@ class BookPublisherController extends Controller
      */
     public function index()
     {
-        $data = $this->model->penerbit()->get();
+        $data = BookPublisher::get();
         return view('backend_view.master.penerbit.penerbit_index', compact('data'));
     }
 
@@ -41,9 +42,9 @@ class BookPublisherController extends Controller
             'alamat' => 'required',
             'tlp' => 'required',
         ]);
-        $id = $this->model->penerbit()->max('mpn_id') + 1;
+        $id = BookPublisher::max('mpn_id') + 1;
         if ($validasi == true) {
-            $this->model->penerbit()->create([
+            BookPublisher::create([
                 'mpn_id' => $id,
                 'mpn_name' => $req->name,
                 'mpn_alamat' => $req->alamat,
@@ -55,7 +56,7 @@ class BookPublisherController extends Controller
 
     public function edit(Request $req)
     {
-        $data = $this->model->penerbit()->where('mpn_id', $req->id)->first();
+        $data = BookPublisher::where('mpn_id', $req->id)->first();
         return view('backend_view.master.penerbit.penerbit_edit', compact('data'));
     }
 
@@ -67,7 +68,7 @@ class BookPublisherController extends Controller
             'tlp' => 'required',
         ]);
         if ($validasi == true) {
-            $this->model->penerbit()->where('mpn_id', $req->id)->update([
+            BookPublisher::where('mpn_id', $req->id)->update([
                 'mpn_name' => $req->name,
                 'mpn_alamat' => $req->alamat,
                 'mpn_tlp' => $req->tlp,
@@ -78,7 +79,7 @@ class BookPublisherController extends Controller
 
     public function destroy(Request $req)
     {
-        $this->model->penerbit()->where('mpn_id', $req->id)->delete();
+        BookPublisher::where('mpn_id', $req->id)->delete();
         return redirect()->back();
     }
 }

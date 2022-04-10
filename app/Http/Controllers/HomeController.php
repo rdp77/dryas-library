@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BookDetail;
+use App\Models\Book\BookDetail;
 use App\Models\Log;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +15,6 @@ class HomeController extends Controller
      *
      * @return void
      */
-    protected $model;
 
 
     public function __construct()
@@ -40,7 +39,7 @@ class HomeController extends Controller
         $total_buku_terpinjam = Log::where('log_feature', 'PEMINJAMAN')
             ->where('log_action', 'CREATE')
             ->count();
-        return view('home', [
+        return view('pages.backend.dashboard', [
             'total_user' => $total_user,
             'total_buku' => $total_buku,
             'total_buku_dipinjam' => $total_buku_dipinjam,
@@ -49,6 +48,7 @@ class HomeController extends Controller
             'pengembalian' => $pengembalian
         ]);
     }
+
     public function calculateid()
     {
         $dateid = strtotime("+1 month", strtotime(Auth::user()->updated_at));
@@ -60,6 +60,7 @@ class HomeController extends Controller
                 ' hari, silahkan melakukan perpanjangan.';
         }
     }
+
     public function calculatepengembalian()
     {
         $date = date("Y-m-d");

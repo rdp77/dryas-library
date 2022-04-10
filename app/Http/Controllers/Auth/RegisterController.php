@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
-use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use App\models;
 
 class RegisterController extends Controller
 {
@@ -24,7 +23,6 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
-    protected $model;
 
     /**
      * Where to redirect users after registration.
@@ -41,7 +39,6 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
-        $this->model = new models();
     }
 
     /**
@@ -55,6 +52,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'username' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'reg' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
             'tlp' => ['required', 'string', 'max:255'],
