@@ -26,12 +26,14 @@ class PrevilegesController extends Controller
     public function index()
     {
         $data = Previleges::get();
-        return view('backend_view.master.previleges.previleges_index', compact('data'));
+        return view('pages.backend.data.user.previleges.editPrevileges', compact('data'));
     }
+
     public function create()
     {
-        return view('backend_view.master.previleges.previleges_create');
+        return view('pages.backend.data.user.previleges.createPrevileges');
     }
+
     public function store(Request $req)
     {
         $validasi = $this->validate($req, [
@@ -46,11 +48,13 @@ class PrevilegesController extends Controller
             return Response()->json(['status' => 'sukses']);
         }
     }
+
     public function edit(Request $req)
     {
         $data = Previleges::where('mp_id', $req->id)->first();
-        return view('backend_view.master.previleges.previleges_edit', compact('data'));
+        return view('pages.backend.data.user.previleges.editPrevileges', compact('data'));
     }
+
     public function update(Request $req)
     {
         $validasi = $this->validate($req, [
@@ -63,9 +67,15 @@ class PrevilegesController extends Controller
             return Response()->json(['status' => 'sukses']);
         }
     }
+
     public function destroy(Request $req)
     {
         Previleges::where('mp_id', $req->id)->delete();
         return redirect()->back();
+    }
+
+    public function show($id)
+    {
+        //
     }
 }

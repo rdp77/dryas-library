@@ -27,12 +27,12 @@ class BookAuthorController extends Controller
     public function index()
     {
         $data = BookAuthor::all();
-        return view('backend_view.master.pengarang.pengarang_index', compact('data'));
+        return view('pages.backend.data.book.author.indexAuthor', compact('data'));
     }
 
     public function create()
     {
-        return view('backend_view.master.pengarang.pengarang_create');
+        return view('pages.backend.data.book.author.createAuthor');
     }
 
     public function store(Request $req)
@@ -57,7 +57,7 @@ class BookAuthorController extends Controller
     public function edit(Request $req)
     {
         $data = BookAuthor::where('mpg_id', $req->id)->first();
-        return view('backend_view.master.pengarang.pengarang_edit', compact('data'));
+        return view('pages.backend.data.book.author.editAuthor', compact('data'));
     }
 
     public function update(Request $req)

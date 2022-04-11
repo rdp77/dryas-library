@@ -27,12 +27,12 @@ class BookCategoryController extends Controller
     public function index()
     {
         $data = BookCategory::all();
-        return view('backend_view.master.kategori.kategori_index', compact('data'));
+        return view('pages.backend.data.book.category.indexCategory', compact('data'));
     }
 
     public function create()
     {
-        return view('backend_view.master.kategori.kategori_create');
+        return view('pages.backend.data.book.category.createCategory');
     }
 
     public function store(Request $req)
@@ -53,7 +53,7 @@ class BookCategoryController extends Controller
     public function edit(Request $req)
     {
         $data = BookCategory::where('mk_id', $req->id)->first();
-        return view('backend_view.master.kategori.kategori_edit', compact('data'));
+        return view('pages.backend.data.book.category.editCategory', compact('data'));
     }
 
     public function update(Request $req)
@@ -73,5 +73,10 @@ class BookCategoryController extends Controller
     {
         $data = BookCategory::where('mk_id', $req->id)->delete();
         return redirect()->back();
+    }
+
+    public function show($id)
+    {
+        //
     }
 }

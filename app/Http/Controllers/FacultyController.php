@@ -27,13 +27,13 @@ class FacultyController extends Controller
     {
         $data = Faculty::get();
 
-        return view('backend_view.master.fakultas.fakultas_index', compact('data'));
+        return view('pages.backend.data.user.faculty.indexFaculty', compact('data'));
     }
 
     public function create()
     {
         $kode = $this->kodefk();
-        return view('backend_view.master.fakultas.fakultas_create', compact('kode'));
+        return view('pages.backend.data.user.faculty.createFaculty', compact('kode'));
     }
 
     public function store(Request $req)
@@ -58,7 +58,7 @@ class FacultyController extends Controller
     public function edit(Request $req)
     {
         $data = Faculty::where('mf_id', $req->id)->first();
-        return view('backend_view.master.fakultas.fakultas_edit', compact('data'));
+        return view('pages.backend.data.user.faculty.editFaculty', compact('data'));
     }
 
     public function update(Request $req)
@@ -90,5 +90,10 @@ class FacultyController extends Controller
         $date = date('m') . date('y');
         $kode = 'FK/' . $date . '/' . str_pad($id, 5, '0', STR_PAD_LEFT);
         return $kode;
+    }
+
+    public function show($id)
+    {
+        //
     }
 }

@@ -27,12 +27,12 @@ class BookPublisherController extends Controller
     public function index()
     {
         $data = BookPublisher::get();
-        return view('backend_view.master.penerbit.penerbit_index', compact('data'));
+        return view('pages.backend.data.book.publisher.indexPublisher', compact('data'));
     }
 
     public function create()
     {
-        return view('backend_view.master.penerbit.penerbit_create');
+        return view('pages.backend.data.book.publisher.createPublisher');
     }
 
     public function store(Request $req)
@@ -57,7 +57,7 @@ class BookPublisherController extends Controller
     public function edit(Request $req)
     {
         $data = BookPublisher::where('mpn_id', $req->id)->first();
-        return view('backend_view.master.penerbit.penerbit_edit', compact('data'));
+        return view('pages.backend.data.book.publisher.editPublisher', compact('data'));
     }
 
     public function update(Request $req)
@@ -81,5 +81,10 @@ class BookPublisherController extends Controller
     {
         BookPublisher::where('mpn_id', $req->id)->delete();
         return redirect()->back();
+    }
+
+    public function show($id)
+    {
+        //
     }
 }

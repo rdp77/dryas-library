@@ -27,13 +27,13 @@ class BookshelfController extends Controller
     public function index()
     {
         $data = Bookshelf::get();
-        return view('backend_view.master.rak_buku.rak_buku_index', compact('data'));
+        return view('pages.backend.data.book.shelf.indexBookshelf', compact('data'));
     }
 
     public function create()
     {
 
-        return view('backend_view.master.rak_buku.rak_buku_create');
+        return view('pages.backend.data.book.shelf.createBookshelf');
     }
 
     public function store(Request $req)
@@ -82,7 +82,7 @@ class BookshelfController extends Controller
     public function edit(Request $req)
     {
         $data = Bookshelf::where('mrb_id', $req->id)->first();
-        return view('backend_view.master.rak_buku.rak_buku_edit', compact('data'));
+        return view('pages.backend.data.book.shelf.editBookshelf', compact('data'));
     }
 
     public function update(Request $req)

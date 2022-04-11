@@ -44,7 +44,7 @@ class ProfileController extends Controller
         $data = User::where('id', $req->id)->first();
         $fakultas = $this->model->fakultas()->get();
         $jurusan = $this->model->jurusan()->get();
-        return view('backend_view.master.user.profile.profile_edit', compact('data', 'fakultas', 'jurusan'));
+        return view('pages.backend.data.user.profile.editProfile', compact('data', 'fakultas', 'jurusan'));
     }
 
     public function profileupdate(Request $req)
@@ -86,7 +86,7 @@ class ProfileController extends Controller
         if (Auth::user()->username == null) {
             return redirect()->route('profile_index')->with(['status' => 'Pastikan sudah mengisi semua data diri']);
         } else {
-            $pdf = PDF::loadView('backend_view.master.user.profile.profile_print');
+            $pdf = PDF::loadView('pages.backenddata.user.profile_print');
             return $pdf->stream("ID Card " . Auth::user()->name . ".pdf", array("Attachment" => 0));
         }
     }

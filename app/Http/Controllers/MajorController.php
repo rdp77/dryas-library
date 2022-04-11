@@ -27,14 +27,16 @@ class MajorController extends Controller
     {
         $data = Major::get();
 
-        return view('backend_view.master.jurusan.jurusan_index', compact('data'));
+        return view('pages.backend.data.user.major.indexMajor', compact('data'));
     }
+
     public function create()
     {
         $kode = $this->kodejr();
         $fakultas = $this->model->fakultas()->get();
-        return view('backend_view.master.jurusan.jurusan_create', compact('kode', 'fakultas'));
+        return view('pages.backend.data.user.major.createMajor', compact('kode', 'fakultas'));
     }
+
     public function store(Request $req)
     {
         $validasi = $this->validate($req, [
@@ -55,12 +57,14 @@ class MajorController extends Controller
             return Response()->json(['status' => 'gagal']);
         }
     }
+
     public function edit(Request $req)
     {
         $data = Major::where('mj_id', $req->id)->first();
         $fakultass = $this->model->fakultas()->get();
-        return view('backend_view.master.jurusan.jurusan_edit', compact('data', 'fakultass'));
+        return view('pages.backend.data.user.major.editMajor', compact('data', 'fakultass'));
     }
+
     public function update(Request $req)
     {
         $validasi = $this->validate($req, [
@@ -79,16 +83,23 @@ class MajorController extends Controller
             return Response()->json(['status' => 'gagal']);
         }
     }
+
     public function destroy(Request $req)
     {
         Major::where('mj_id', $req->id)->delete();
         return redirect()->back();
     }
+
     public function kodejr()
     {
         $id = Major::max('mj_id') + 1;
         $date = date('m') . date('y');
         $kode = 'JS/' . $date . '/' . str_pad($id, 5, '0', STR_PAD_LEFT);
         return $kode;
+    }
+
+    public function show($id)
+    {
+        //
     }
 }

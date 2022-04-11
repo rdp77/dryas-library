@@ -31,7 +31,7 @@ class BookReturnController extends Controller
         $data = BookReturn::with([
             'pengembalian_dt', 'pengembalian_dt.buku_dt', 'pengembalian_dt.buku_dt.buku'
         ])->get();
-        return view('backend_view.transaksi.pengembalian.pengembalian_index', compact('data'));
+        return view('pages.backend.transaction.return.indexBookReturn', compact('data'));
     }
 
     public function create()
@@ -40,7 +40,7 @@ class BookReturnController extends Controller
         $date = date('m') . date('y');
         $kode = 'PG/' . $date . '/' . str_pad($id, 5, '0', STR_PAD_LEFT);
         $peminjaman = $this->model->peminjaman()->DoesntHave('pengembalian')->with('peminjaman_anggota')->get();
-        return view('backend_view.transaksi.pengembalian.pengembalian_create', compact('kode', 'peminjaman'));
+        return view('pages.backend.transaction.return.createBookReturn', compact('kode', 'peminjaman'));
     }
 
     public function get_data_peminjaman(Request $req)
@@ -136,7 +136,7 @@ class BookReturnController extends Controller
                 return $q->where('mb_pinjam', 'YA');
             }])
             ->get();
-        return view('backend_view.transaksi.pengembalian.pengembalian_edit', compact('data', 'user', 'buku', 'peminjaman'));
+        return view('pages.backend.transaction.return.editBookReturn', compact('data', 'user', 'buku', 'peminjaman'));
     }
 
     public function update(Request $req)

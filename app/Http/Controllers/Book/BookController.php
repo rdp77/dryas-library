@@ -29,7 +29,7 @@ class BookController extends Controller
     public function index()
     {
         $data = Book::all();
-        return view('backend_view.master.buku.buku_index', compact('data'));
+        return view('pages.backend.data.book.indexBook', compact('data'));
     }
 
     public function create()
@@ -41,7 +41,10 @@ class BookController extends Controller
         $penerbits = $this->model->penerbit()->get();
         $pengarangs = $this->model->pengarang()->get();
         $rak_bukus = $this->model->rak_buku_dt()->get();
-        return view('backend_view.master.buku.buku_create', compact('kategoris', 'rak_bukus', 'penerbits', 'pengarangs', 'kode'));
+        return view(
+            'pages.backend.data.book.createBook',
+            compact('kategoris', 'rak_bukus', 'penerbits', 'pengarangs', 'kode')
+        );
     }
 
     public function store(Request $req)
@@ -105,7 +108,10 @@ class BookController extends Controller
         $penerbits = $this->model->penerbit()->get();
         $pengarangs = $this->model->pengarang()->get();
         $rak_bukus = $this->model->rak_buku_dt()->get();
-        return view('backend_view.master.buku.buku_edit', compact('kategoris', 'rak_bukus', 'penerbits', 'pengarangs', 'data'));
+        return view(
+            'pages.backend.data.book.editBook',
+            compact('kategoris', 'rak_bukus', 'penerbits', 'pengarangs', 'data')
+        );
     }
 
     public function update(Request $req)
@@ -189,5 +195,10 @@ class BookController extends Controller
         Book::where('mb_id', $req->id)->delete();
         $this->model->buku_dt()->where('mbdt_id', $req->id)->delete();
         return redirect()->back();
+    }
+
+    public function show($id)
+    {
+        //
     }
 }

@@ -31,7 +31,7 @@ class BookLoanController extends Controller
         $data = BookLoan::with([
             'peminjaman_dt', 'peminjaman_dt.buku_dt', 'peminjaman_dt.buku_dt.buku', 'pengembalian'
         ])->get();
-        return view('backend_view.transaksi.peminjaman.peminjaman_index', compact('data'));
+        return view('pages.backend.transaction.loan.indexBookLoan', compact('data'));
     }
 
     public function create()
@@ -45,7 +45,10 @@ class BookLoanController extends Controller
                 return $q->where('mb_pinjam', 'YA');
             }])
             ->get();
-        return view('backend_view.transaksi.peminjaman.peminjaman_create', compact('user', 'kode', 'buku'));
+        return view(
+            'pages.backend.transaction.loan.createBookLoan',
+            compact('user', 'kode', 'buku')
+        );
     }
 
     public function get_data_buku(Request $req)
@@ -142,7 +145,8 @@ class BookLoanController extends Controller
 
     public function edit(Request $req)
     {
-        $data = BookLoan::with(['peminjaman_dt', 'peminjaman_dt.buku_dt', 'peminjaman_dt.buku_dt.buku'])->where('tpj_id', $req->id)->first();
+        $data = BookLoan::with(['peminjaman_dt', 'peminjaman_dt.buku_dt', 'peminjaman_dt.buku_dt.buku'])
+            ->where('tpj_id', $req->id)->first();
         $user = $this->model->user()->get();
         $buku = $this->model->buku_dt()
             ->where('mbdt_status', 'TERSEDIA')
@@ -150,7 +154,10 @@ class BookLoanController extends Controller
                 return $q->where('mb_pinjam', 'YA');
             }])
             ->get();
-        return view('backend_view.transaksi.peminjaman.peminjaman_edit', compact('data', 'user', 'buku'));
+        return view(
+            'pages.backend.transaction.loan.editBookLoan',
+            compact('data', 'user', 'buku')
+        );
     }
 
     public function update(Request $req)
@@ -229,5 +236,10 @@ class BookLoanController extends Controller
         $data = BookLoan::where('tpj_id', $req->id)->delete();
         $data = $this->model->peminjaman_dt()->where('tpjdt_id', $req->id)->delete();
         return redirect()->back();
+    }
+
+    public function show($id)
+    {
+        //
     }
 }

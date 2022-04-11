@@ -48,8 +48,9 @@ class UserController extends Controller
         $previlege = Previleges::all();
         $fakultas = Faculty::all();
         $jurusan = Major::all();
-        return view('backend_view.master.user.user_create', compact('previlege', 'fakultas', 'jurusan'));
+        return view('pages.backend.data.user.createUser', compact('previlege', 'fakultas', 'jurusan'));
     }
+
     public function save(Request $req)
     {
         $id = User::max('id') + 1;
@@ -94,14 +95,16 @@ class UserController extends Controller
             return Response()->json(['status' => 'sukses']);
         }
     }
+
     public function edit(Request $req)
     {
         $data = User::where('id', $req->id)->first();
         $previlege = $this->model->previleges()->get();
         $fakultas = $this->model->fakultas()->get();
         $jurusan = $this->model->jurusan()->get();
-        return view('backend_view.master.user.user_edit', compact('data', 'previlege', 'fakultas', 'jurusan'));
+        return view('pages.backend.data.user.editUser', compact('data', 'previlege', 'fakultas', 'jurusan'));
     }
+
     public function update(Request $req)
     {
         $validasi = $this->validate($req, [
@@ -139,11 +142,13 @@ class UserController extends Controller
             return Response()->json(['status' => 'sukses']);
         }
     }
+
     public function hapus(Request $req)
     {
         DB::table('users')->where('id', $req->id)->delete();
         return redirect()->back();
     }
+
     public function extends(Request $req)
     {
         $users = DB::table('users')::table('users')->where('id', $req->id);
@@ -152,6 +157,7 @@ class UserController extends Controller
         $users->update(['updated_at' => $newdate]);
         return redirect()->back();
     }
+
     public function kodemhs()
     {
         $count = User::where('kode', 'like', 'MHS%')->count();
@@ -160,6 +166,7 @@ class UserController extends Controller
         $kode = 'MHS/' . $date . "/" . $newcount;
         return $kode;
     }
+
     public function kodedsn()
     {
         $count = User::where('kode', 'like', 'DSN%')->count();
@@ -168,6 +175,7 @@ class UserController extends Controller
         $kode = 'DSN/' . $date . "/" . $newcount;
         return $kode;
     }
+
     public function kodeadm()
     {
         $count = User::where('kode', 'like', 'ADM%')->count();
@@ -176,6 +184,7 @@ class UserController extends Controller
         $kode = 'ADM/' . $date . "/" . $newcount;
         return $kode;
     }
+
     public function useraktif()
     {
         $yearnow = date("Y");
@@ -189,5 +198,10 @@ class UserController extends Controller
         } else {
             return 'T';
         }
+    }
+
+    public function show($id)
+    {
+        //
     }
 }
