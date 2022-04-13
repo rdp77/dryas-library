@@ -395,19 +395,6 @@ $(function () {
         });
     }
 
-    $("#cow_id_2").select2({
-        allowClear: true,
-        escapeMarkup: function (markup) {
-            return markup;
-        },
-        placeholder: "- Select -",
-        language: {
-            noResults: function () {
-                return "<a href='/data/member/create'>Tambah Nasabah</a>";
-            },
-        },
-    });
-
     $(".notification-toggle").dropdown();
     $(".notification-toggle")
         .parent()
@@ -757,28 +744,6 @@ $(function () {
             });
         }
     }
-    $(".daterange-cus").daterangepicker({
-        locale: {
-            format: "DD MMMM YYYY",
-            daysOfWeek: ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"],
-            monthNames: [
-                "Januari",
-                "Februari",
-                "Maret",
-                "April",
-                "Mei",
-                "Juni",
-                "Juli",
-                "Agustus",
-                "September",
-                "Oktober",
-                "November",
-                "Desember",
-            ],
-        },
-        drops: "down",
-        opens: "right",
-    });
 
     // Timepicker
     if (jQuery().timepicker && $(".timepicker").length) {
@@ -790,7 +755,7 @@ $(function () {
         });
     }
 
-    // NProgress
+    //NProgress
     NProgress.start();
     NProgress.done();
 
@@ -802,9 +767,62 @@ $(function () {
         NProgress.done();
     });
 
+    // Upload Preview
+    $.uploadPreview({
+        input_field: "#image-upload", // Default: .image-upload
+        preview_box: "#image-preview", // Default: .image-preview
+        label_field: "#image-label", // Default: .image-label
+        label_default: "Choose File", // Default: Choose File
+        label_selected: "Change File", // Default: Change File
+        no_label: false, // Default: false
+        success_callback: null, // Default: null
+    });
+
     // Cleave
-    var cleave = new Cleave(".cleaveNumeral", {
-        numeral: true,
-        numeralThousandsGroupStyle: "thousand",
+    $(".cleaveNumeral")
+        .toArray()
+        .forEach(function (field) {
+            new Cleave(field, {
+                numeral: true,
+                numeralThousandsGroupStyle: "thousand",
+            });
+        });
+
+    // Dark Mode
+    const themeBtn = document.querySelector("#toggle-theme");
+
+    function getCurrentTheme() {
+        let theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        localStorage.getItem("veyaz.theme")
+            ? (theme = localStorage.getItem("veyaz.theme"))
+            : null;
+        return theme;
+    }
+
+    function loadTheme(theme) {
+        const root = document.querySelector(":root");
+        if (theme === "light") {
+            themeBtn.innerHTML = '<i class="fas fa-moon"></i>';
+        } else {
+            themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+        root.setAttribute("color-scheme", `${theme}`);
+    }
+
+    themeBtn.addEventListener("click", () => {
+        let theme = getCurrentTheme();
+        if (theme === "dark") {
+            theme = "light";
+        } else {
+            theme = "dark";
+        }
+        localStorage.setItem("veyaz.theme", `${theme}`);
+        loadTheme(theme);
+    });
+
+    window.addEventListener("DOMContentLoaded", () => {
+        loadTheme(getCurrentTheme());
     });
 });

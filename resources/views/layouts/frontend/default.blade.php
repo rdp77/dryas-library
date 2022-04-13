@@ -1,29 +1,18 @@
-@include('layouts.components.header')
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
+<head>
+    <title>@yield('title')</title>
+    @include('components.meta')
+</head>
 
 <body>
-    <div id="app">
-        <section class="section">
-            <div class="container mt-5">
-                <div class="row">
-                    <div
-                        class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
-                        <div class="login-brand">
-                            <img src="{{ asset('assets/img/ksp.png') }}" alt="logo" width="350" style="margin-top: 100px;">
-                        </div>
-                        <div class="card card-dark">
-                            <div class="card-body">
-                                @yield('content')
-                            </div>
-                        </div>
-                        <div class="simple-footer">
-                            @include('layouts.components.credit')
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-    @include('layouts.components.footer')
+    @include('components.loader')
+    @include('components.header')
+    @yield('content')
+    @include('components.footer')
+    <!-- Javascript -->
+    <script src="{{ asset('js/front.js') }}"></script>
     @yield('script')
 </body>
 

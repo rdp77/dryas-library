@@ -23,15 +23,13 @@ mix.styles(
         "resources/css/buttons.bootstrap4.min.css",
         "resources/css/responsive.bootstrap4.min.css",
         "resources/css/select2.min.css",
-        "resources/css/selectric.css",
         "resources/css/chocolat.css",
-        "resources/css/iziToast.min.css",
         "resources/css/bootstrap-tagsinput.css",
         "resources/css/style.css",
         "resources/css/summernote-bs4.css",
         "resources/css/components.css"
     ],
-    "public/style.css"
+    "public/assets/style.css"
 )
     // Javascript
     .scripts(
@@ -42,7 +40,6 @@ mix.styles(
             "resources/js/bootstrap.min.js",
             "resources/js/stisla.js",
             "resources/js/jquery.dataTables.min.js",
-            "resources/js/jquery.selectric.min.js",
             "resources/js/jquery.uploadPreview.min.js",
             "resources/js/dataTables.bootstrap4.min.js",
             "resources/js/dataTables.searchBuilder.min.js",
@@ -55,7 +52,6 @@ mix.styles(
             "resources/js/dataTables.responsive.min.js",
             "resources/js/responsive.bootstrap4.min.js",
             "resources/js/Chart.min.js",
-            "resources/js/iziToast.min.js",
             "resources/js/bootstrap-tagsinput.js",
             "resources/js/select2.full.min.js",
             "resources/js/cleave.min.js",
@@ -64,7 +60,7 @@ mix.styles(
             "resources/js/scripts.js",
             "resources/js/summernote-bs4.js"
         ],
-        "public/scripts.js"
+        "public/assets/scripts.js"
     )
     .version();
 

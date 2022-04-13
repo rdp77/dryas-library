@@ -7,6 +7,7 @@ use App\Models\Log;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Request;
 
 class HomeController extends Controller
 {
@@ -29,6 +30,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // $log = Log::limit(7)
+        //     ->orderBy('log_id', 'desc')
+        //     ->get();
+        $users = User::count();
+        // $logCount = Log::where('u_id', Auth::user()->id)
+        //     ->count();
         $idcard = $this->calculateid();
         $pengembalian = $this->calculatepengembalian();
         $total_user = User::where('previleges', '!=', '1')
@@ -45,7 +52,8 @@ class HomeController extends Controller
             'total_buku_dipinjam' => $total_buku_dipinjam,
             'total_buku_terpinjam' => $total_buku_terpinjam,
             'idcard' => $idcard,
-            'pengembalian' => $pengembalian
+            'pengembalian' => $pengembalian,
+            // 'log' => $log,
         ]);
     }
 
@@ -82,5 +90,21 @@ class HomeController extends Controller
                     ' dimohon segera mengembalikan buku yang anda pinjam dan membayar denda.';
             }
         }
+    }
+
+    public function log(Request $req)
+    {
+        // if ($req->ajax()) {
+        //     $data = Log::where('u_id', Auth::user()->id)
+        //         ->get();
+        //     return Datatables::of($data)
+        //         ->addIndexColumn()
+        //         ->addColumn('added_at', function ($row) {
+        //             return date("d-M-Y H:m", strtotime($row->added_at));
+        //         })
+        //         ->rawColumns(['added_at'])
+        //         ->make(true);
+        // }
+        // return view('pages.backend.log.IndexLog');
     }
 }

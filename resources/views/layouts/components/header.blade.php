@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
-    <link rel="shortcut icon" href="{{ URL::asset('assets/img/koperasi_new.png') }}">
     @auth
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @endauth
+
+    <!-- Icon -->
+    <link href="{{ asset('favicon.ico') }}" rel="shortcut icon" type=image/x-icon>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"

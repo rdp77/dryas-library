@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.frontend.default')
 @section('title', __('about.title'))
 @section('content')
 <section class="premium-section spad">
@@ -10,12 +10,12 @@
             <div class="container-fluid">
                 <div class="song-details-box">
                     <p class="mb-3">
-                        <h3>Specification</h3>
-                        <ul>
-                            <li><strong>DBMS:</strong><span>PostGreSQL</span></li>
-                            <li><strong>Visual Canvas:</strong><span>Creately</span></li>
-                            <li><strong>Web UI Mockup Tools:</strong><span>Protopie</span></li>
-                        </ul>
+                    <h3>Specification</h3>
+                    <ul>
+                        <li><strong>DBMS:</strong><span>PostGreSQL</span></li>
+                        <li><strong>Visual Canvas:</strong><span>Creately</span></li>
+                        <li><strong>Web UI Mockup Tools:</strong><span>Protopie</span></li>
+                    </ul>
                     </p>
                 </div>
                 <div class="song-details-box">

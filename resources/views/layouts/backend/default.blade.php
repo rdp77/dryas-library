@@ -1,7 +1,5 @@
 @include('layouts.components.header')
 
-@yield('style')
-
 <body>
     <div id="app">
         <div class="main-wrapper">
@@ -27,15 +25,18 @@
                     @include('layouts.components.credit')
                 </div>
                 <div class="footer-right">
-                    KSP - Sumber Rejeki {{ __('v1.0') }}
+                    {{ __('v1') }} <div class="bullet"></div>
+                    {{ __('Laravel v') . Illuminate\Foundation\Application::VERSION }}
+                    <div class="bullet"></div>
+                    {{ __('PHP v') . PHP_VERSION }}
                 </div>
             </footer>
         </div>
     </div>
     @include('layouts.components.footer')
     <script src="{{ asset('assets/pages/index.js') }}"></script>
-    <script src="{{ asset('assets/notification.js') }}"></script>
     @yield('script')
+    @include('vendor.lara-izitoast.toast')
 </body>
 
 </html>
