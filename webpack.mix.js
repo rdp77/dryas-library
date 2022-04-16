@@ -11,27 +11,56 @@ const mix = require("laravel-mix");
  |
  */
 
-// CSS
+// Front End
 mix.styles(
     [
-        "resources/css/nprogress.css",
-        "resources/css/mfb.min.css",
-        "resources/css/bootstrap.min.css",
-        "resources/css/daterangepicker.css",
-        "resources/css/dataTables.bootstrap4.min.css",
-        "resources/css/searchBuilder.dataTables.min.css",
-        "resources/css/buttons.bootstrap4.min.css",
-        "resources/css/responsive.bootstrap4.min.css",
-        "resources/css/select2.min.css",
-        "resources/css/chocolat.css",
-        "resources/css/bootstrap-tagsinput.css",
-        "resources/css/style.css",
-        "resources/css/summernote-bs4.css",
-        "resources/css/components.css"
+        "resources/css/frontend/bootstrap.min.css",
+        "resources/css/frontend/font-awesome.min.css",
+        "resources/css/frontend/owl.carousel.min.css",
+        "resources/css/frontend/customdataTables.css",
+        "resources/css/backend/responsive.bootstrap4.min.css",
+        "resources/css/frontend/slicknav.min.css",
+        "resources/css/frontend/ekko-lightbox.css",
+        "resources/css/frontend/style.css"
     ],
-    "public/assets/style.css"
+    "public/front.css"
 )
-    // Javascript
+    .scripts(
+        [
+            "resources/js/frontend/jquery-3.2.1.min.js",
+            "resources/js/frontend/bootstrap.min.js",
+            "resources/js/frontend/owl.carousel.min.js",
+            "resources/js/frontend/jquery.slicknav.min.js",
+            "resources/js/backend/jquery.dataTables.min.js",
+            "resources/js/backend/dataTables.bootstrap4.min.js",
+            "resources/js/backend/dataTables.responsive.min.js",
+            "resources/js/frontend/ekko-lightbox.min.js",
+            "resources/js/backend/jquery.inputmask.min.js",
+            "resources/js/backend/inputmask.binding.js",
+            "resources/js/frontend/main.js"
+        ],
+        "public/front.js"
+    )
+    // Backend
+    .styles(
+        [
+            "resources/css/nprogress.css",
+            "resources/css/mfb.min.css",
+            "resources/css/bootstrap.min.css",
+            "resources/css/daterangepicker.css",
+            "resources/css/dataTables.bootstrap4.min.css",
+            "resources/css/searchBuilder.dataTables.min.css",
+            "resources/css/buttons.bootstrap4.min.css",
+            "resources/css/responsive.bootstrap4.min.css",
+            "resources/css/select2.min.css",
+            "resources/css/chocolat.css",
+            "resources/css/bootstrap-tagsinput.css",
+            "resources/css/style.css",
+            "resources/css/summernote-bs4.css",
+            "resources/css/components.css"
+        ],
+        "public/style.css"
+    )
     .scripts(
         [
             "resources/js/nprogress.js",
@@ -60,7 +89,7 @@ mix.styles(
             "resources/js/scripts.js",
             "resources/js/summernote-bs4.js"
         ],
-        "public/assets/scripts.js"
+        "public/scripts.js"
     )
     .version();
 

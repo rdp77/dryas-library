@@ -16,19 +16,19 @@
         <div class="row">
             <div class="col-lg-4 col-sm-6">
                 <div class="premium-item">
-                    <img src="{{ asset('assets/img/avatar/rdp77.png') }}" alt="">
+                    <img src="{{ asset('img/avatar/rdp77.png') }}" alt="">
                     <h4>{{ __('Moh Ravi Dwi Putra') }}</h4>
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6">
                 <div class="premium-item">
-                    <img src="{{ asset('assets/img/avatar/axl.jpg') }}" alt="">
+                    <img src="{{ asset('img/avatar/axl.jpg') }}" alt="">
                     <h4>{{ __('Deny Prasetyo') }}</h4>
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6">
                 <div class="premium-item">
-                    <img src="{{ asset('assets/img/avatar/default.svg') }}" alt="">
+                    <img src="{{ asset('img/avatar/default.svg') }}" alt="">
                     <h4>{{ __('Abdul Rozaq N') }}</h4>
                 </div>
             </div>
@@ -36,13 +36,13 @@
             </div>
             <div class="col-lg-4 col-sm-6">
                 <div class="premium-item">
-                    <img src="{{ asset('assets/img/avatar/ah.jpg') }}" alt="">
+                    <img src="{{ asset('img/avatar/ah.jpg') }}" alt="">
                     <h4>{{ __('Abdurrahman Hanif') }}</h4>
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6">
                 <div class="premium-item">
-                    <img src="{{ asset('assets/img/avatar/default.svg') }}" alt="">
+                    <img src="{{ asset('img/avatar/default.svg') }}" alt="">
                     <h4>{{ __('Ahmad Rizal M') }}</h4>
                 </div>
             </div>

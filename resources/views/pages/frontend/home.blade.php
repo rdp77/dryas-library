@@ -15,7 +15,7 @@
 					</div>
 					<div class="col-lg-6">
 						<div class="hr-img">
-							<img src="{{ asset('assets/img/draw/undraw_book_lover_mkck.svg') }}" alt="">
+							<img src="{{ asset('img/draw/undraw_book_lover_mkck.svg') }}" alt="">
 						</div>
 					</div>
 				</div>
@@ -38,7 +38,7 @@
 					</div>
 					<div class="col-lg-6">
 						<div class="hr-img">
-							<img src="{{ asset('assets/img/books/hero-bg.png') }}" alt="">
+							<img src="{{ asset('img/books/hero-bg.png') }}" alt="">
 						</div>
 					</div>
 				</div>
@@ -74,7 +74,7 @@
 			<div class="col-md-4">
 				<div class="how-item">
 					<div class="hi-icon">
-						<img src="{{ asset('assets/img/icons/brain.png') }}" alt="">
+						<img src="{{ asset('img/icons/brain.png') }}" alt="">
 					</div>
 					<h4>Create an account</h4>
 					<p>Create an account faster without going to the library online, just making use of your internet
@@ -84,7 +84,7 @@
 			<div class="col-md-4">
 				<div class="how-item">
 					<div class="hi-icon">
-						<img src="{{ asset('assets/img/icons/pointer.png') }}" alt="">
+						<img src="{{ asset('img/icons/pointer.png') }}" alt="">
 					</div>
 					<h4>Select a books</h4>
 					<p>Choose the book you want, whatever it is, whenever it is, and wherever it is, you can do it
@@ -94,7 +94,7 @@
 			<div class="col-md-4">
 				<div class="how-item">
 					<div class="hi-icon">
-						<img src="{{ asset('assets/img/icons/smartphone.png') }}" alt="">
+						<img src="{{ asset('img/icons/smartphone.png') }}" alt="">
 					</div>
 					<h4>Rent</h4>
 					<p>Rent books that you like repeatedly even every day, up to 5 books in a row.</p>
@@ -120,25 +120,25 @@
 		<div class="row">
 			<div class="col-lg-3 col-sm-6">
 				<div class="concept-item">
-					<img src="{{ asset('assets/img/books/1.jpg') }}" alt="">
+					<img src="{{ asset('img/books/1.jpg') }}" alt="">
 					<h5>MOMENTUM</h5>
 				</div>
 			</div>
 			<div class="col-lg-3 col-sm-6">
 				<div class="concept-item">
-					<img src="{{ asset('assets/img/books/2.jpg') }}" alt="">
+					<img src="{{ asset('img/books/2.jpg') }}" alt="">
 					<h5>THE BOY</h5>
 				</div>
 			</div>
 			<div class="col-lg-3 col-sm-6">
 				<div class="concept-item">
-					<img src="{{ asset('assets/img/books/3.jpg') }}" alt="">
+					<img src="{{ asset('img/books/3.jpg') }}" alt="">
 					<h5>PATHWAY TO LOVE</h5>
 				</div>
 			</div>
 			<div class="col-lg-3 col-sm-6">
 				<div class="concept-item">
-					<img src="{{ asset('assets/img/books/4.jpg') }}" alt="">
+					<img src="{{ asset('img/books/4.jpg') }}" alt="">
 					<h5>CATCHER IN THE RYE</h5>
 				</div>
 			</div>
@@ -164,12 +164,12 @@
 			</div>
 			<div class="col-lg-6">
 				<ul class="sub-list">
-					<li><img src="{{ asset('assets/img/icons/check-icon') }}.png" alt="">Duration of Loans Up to 21 Days
+					<li><img src="{{ asset('img/icons/check-icon') }}.png" alt="">Duration of Loans Up to 21 Days
 					</li>
-					<li><img src="{{ asset('assets/img/icons/check-icon') }}.png" alt="">Full access to reading online
+					<li><img src="{{ asset('img/icons/check-icon') }}.png" alt="">Full access to reading online
 					</li>
-					<li><img src="{{ asset('assets/img/icons/check-icon') }}.png" alt="">Borrow Now Up to 5 books</li>
-					<li><img src="{{ asset('assets/img/icons/check-icon') }}.png" alt="">Free Library Membership Card
+					<li><img src="{{ asset('img/icons/check-icon') }}.png" alt="">Borrow Now Up to 5 books</li>
+					<li><img src="{{ asset('img/icons/check-icon') }}.png" alt="">Free Library Membership Card
 					</li>
 				</ul>
 			</div>

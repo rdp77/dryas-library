@@ -3,16 +3,18 @@
 
 <head>
     <title>@yield('title')</title>
-    @include('components.meta')
+    @include('layouts.frontend.components.meta')
 </head>
 
 <body>
-    @include('components.loader')
-    @include('components.header')
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+    @include('layouts.frontend.components.nav')
     @yield('content')
-    @include('components.footer')
+    @include('layouts.frontend.components.footer')
     <!-- Javascript -->
-    <script src="{{ asset('js/front.js') }}"></script>
+    <script src="{{ mix('front.js') }}"></script>
     @yield('script')
 </body>
 
